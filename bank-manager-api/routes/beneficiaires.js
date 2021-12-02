@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET revenus. */
-router.get('/', function(req, res, next) {
-    res.send("nothing yet");
+let beneficiaires = require("../controllers/beneficiaires.controller.js");
+
+router.get('/', async function(req, res, next) {
+    let beneficiairesArray = await beneficiaires.findAll();
+    res.json(beneficiairesArray);
 });
 
 /* POST revenus. */

@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.send("nothing yet");
+let depenses = require("../controllers/depenses.controller.js");
+
+router.get('/', async function(req, res, next) {
+    let depensesArray = await depenses.findAll();
+    res.json(depensesArray);
 });
 
 module.exports = router;

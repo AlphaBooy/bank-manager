@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET revenus. */
-router.get('/', function(req, res, next) {
-    res.send("nothing yet");
+let categories = require("../controllers/categories.controller.js");
+
+router.get('/', async function(req, res, next) {
+    let categoriesArray = await categories.findAll();
+    res.json(categoriesArray);
 });
 
 /* POST revenus. */
