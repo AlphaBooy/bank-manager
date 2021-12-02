@@ -17,12 +17,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RevenusComponent } from './components/revenus/revenus.component';
+import { DepensesComponent } from './components/depenses/depenses.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccueilComponent,
-    FilDArianeComponent
+    FilDArianeComponent,
+    RevenusComponent,
+    DepensesComponent
   ],
   imports: [
     BrowserModule,

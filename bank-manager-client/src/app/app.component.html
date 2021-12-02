@@ -1,7 +1,9 @@
 <mat-drawer-container class="menu-container h-100 text-primary">
   <mat-drawer #drawer class="menu-sidenav mx-0 px-0" mode="push">
     <ul class="menu-sidenav-list mt-5 mx-0 px-0">
-      <a href="/" class="menu-sidenav-item mx-0">    <li class="menu-sidenav-item text-center text-white mx-5"> <mat-icon>home</mat-icon>          &nbsp; Home     </li></a><mat-divider class="my-3"></mat-divider>
+      <a href="/" class="menu-sidenav-item mx-0">    <li class="menu-sidenav-item text-center text-primary mx-5"> <mat-icon>home</mat-icon>          &nbsp; Accueil     </li></a><mat-divider class="my-3"></mat-divider>
+      <a href="/depenses" class="menu-sidenav-item mx-0">    <li class="menu-sidenav-item text-center text-primary mx-5"> <mat-icon>credit_card</mat-icon>          &nbsp; Dépenses     </li></a><mat-divider class="my-3"></mat-divider>
+      <a href="/revenus" class="menu-sidenav-item mx-0">    <li class="menu-sidenav-item text-center text-primary mx-5"> <mat-icon>monetization_on</mat-icon>          &nbsp; Revenus     </li></a><mat-divider class="my-3"></mat-divider>
     </ul>
   </mat-drawer>
 
@@ -10,7 +12,7 @@
       <button type="button" mat-icon-button (click)="drawer.toggle()" class="col-1">
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="col-1"><a href="/" class="text-white">Bank Manager</a></h1>
+      <h1 class="col-1"><a href="/" class="text-dark">Bank Manager</a></h1>
     </mat-toolbar>
     <!-- Add a breadcrumb to the top of the page to locate the position of the user in the app -->
     <app-fil-d-ariane></app-fil-d-ariane>
