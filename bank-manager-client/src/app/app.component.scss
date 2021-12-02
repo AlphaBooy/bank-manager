@@ -1,0 +1,20 @@
+html, body, page-content {
+  height: 100%;
+  background-color: #ebf4fa !important;
+}
+
+.menu-sidenav {
+  width: 15%;
+  min-width: 300px;
+  margin-left: 0;
+  height: 100%;
+}
+
+.menu-sidenav-list {
+  list-style-type: none;
+  margin-left: 0 !important;
+}
+
+.menu-sidenav-item {
+  text-decoration: none;
+}
