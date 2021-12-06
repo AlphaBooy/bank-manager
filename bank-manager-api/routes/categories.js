@@ -8,6 +8,13 @@ router.get('/', async function(req, res, next) {
     res.json(categoriesArray);
 });
 
+router.get('/:id', async function(req, res, next) {
+    let IDCategorie = req.params.id;
+    let categorie = await categories.findByPk(IDCategorie);
+    res.json(categorie);
+});
+
+
 /* POST revenus. */
 router.post('/', function(req, res, next) {
     res.send("nothing yet");

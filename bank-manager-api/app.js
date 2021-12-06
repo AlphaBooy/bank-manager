@@ -1,22 +1,24 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError   = require('http-errors');
+let express       = require('express');
+let path          = require('path');
+let cookieParser  = require('cookie-parser');
+let logger        = require('morgan');
+let cors          = require('cors');
 
-var indexRouter = require('./routes/index');
-var depensesRouter = require('./routes/depenses');
-var revenusRouter = require('./routes/revenus');
-var categoriesRouter = require('./routes/categories');
-var crediteursRouter = require('./routes/crediteurs');
-var beneficiaireRouter = require('./routes/beneficiaires');
+let indexRouter = require('./routes/index');
+let depensesRouter = require('./routes/depenses');
+let revenusRouter = require('./routes/revenus');
+let categoriesRouter = require('./routes/categories');
+let crediteursRouter = require('./routes/crediteurs');
+let beneficiaireRouter = require('./routes/beneficiaires');
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
