@@ -14,12 +14,12 @@ export class BeneficiaireService {
     }
 
     getID(IDBeneficiaire: number): Observable<object> {
-        const apiGet = this.apiBaseUrl + '/beneficiaire/' + IDBeneficiaire;
+        const apiGet = this.apiBaseUrl + '/beneficiaires/' + IDBeneficiaire;
         return this.http.get(apiGet, {responseType: 'json'});
     }
 
     getAll(): Observable<object> {
-        const apiGet = this.apiBaseUrl + '/beneficiaire';
+        const apiGet = this.apiBaseUrl + '/beneficiaires';
         return this.http.get(apiGet, {responseType: 'json'});
     }
 }

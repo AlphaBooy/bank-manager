@@ -50,40 +50,25 @@ export class DepensesComponent implements AfterViewInit {
                 console.log(err);
             },
             complete: () => {
-                this.dataSource = new MatTableDataSource<DepensesDisplay>(this.depensesDisplay)
+                this.dataSource = new MatTableDataSource<DepensesDisplay>(this.depensesDisplay);
+                this.ngAfterViewInit();
                 this.isLoading = false;
             }
         });
     }
 
     ngAfterViewInit() {
+        for (let i = 0; i < this.dataSource.data.length; i++) {
+            console.log(this.dataSource.data[i])
+            this.beneficiareService.getID(parseInt(this.dataSource.data[i].Beneficiaire)).subscribe({
+                next: (res: any) => { this.dataSource.data[i].Beneficiaire = res.nom; }
+            });
+
+            this.categorieService.getID((parseInt(this.dataSource.data[i].Categorie))).subscribe({
+                next: (res: any) => { this.dataSource.data[i].Categorie = res.nom; }
+            });
+        }
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-    }
-
-    async getBeneficiaire(IDBeneficiaire: number): Promise<string> {
-        let nom = "";
-        this.beneficiareService.getID(IDBeneficiaire).subscribe({
-            next: (res: any) => {
-                nom = res.nom;
-            },
-            error: (err) => {
-                console.log(err)
-            }
-        });
-        return nom;
-    }
-
-    async getCategorie(IDCategorie: number): Promise<string> {
-        let nom = "";
-        this.categorieService.getID(IDCategorie).subscribe({
-            next: (res: any) => {
-                nom = res.nom;
-            },
-            error: (err) => {
-                console.log(err)
-            }
-        });
-        return nom;
     }
 }
