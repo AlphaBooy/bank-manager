@@ -10,7 +10,7 @@ export interface Depenses {
 
 export interface DepensesDisplay {
     ID: string,
-    montant: string,
+    montant: number,
     Date: string,
     Beneficiaire: string,
     Categorie: string,

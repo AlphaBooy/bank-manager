@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ApexNonAxisChartSeries, ApexResponsive, ApexChart, ChartComponent, ApexLegend} from "ng-apexcharts";
 import {CategorieService} from "../../../services/categorie.service";
 import {DepensesService} from "../../../services/depenses.service";
@@ -18,6 +18,7 @@ export type ChartOptions = {
     styleUrls: ['./categories-donut-chart.component.scss']
 })
 export class CategoriesDonutChartComponent implements OnInit {
+    @Input() input: boolean;
     @ViewChild("chart") chart: ChartComponent;
     public chartOptions!: Partial<ChartOptions> | any;
 
@@ -62,4 +63,7 @@ export class CategoriesDonutChartComponent implements OnInit {
         });
     }
 
+    ngOnChanges() {
+        console.log(this.input);
+    }
 }

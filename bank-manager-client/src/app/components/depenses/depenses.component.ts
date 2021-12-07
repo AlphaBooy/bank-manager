@@ -29,6 +29,7 @@ export class DepensesComponent implements AfterViewInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+    refresh: boolean = false;
 
     constructor(public depensesService: DepensesService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService) {
         this.depensesService.getAll().subscribe({
@@ -36,7 +37,7 @@ export class DepensesComponent implements AfterViewInit {
                 res.forEach((element: Depenses) => {
                     this.depensesDisplay.push({
                         "ID": element.ID,
-                        "montant": PriceUtilities.priceFormat(element.montant),
+                        "montant": element.montant,
                         "Date": DateUtilities.dateFormat(element.Date),
                         "Beneficiaire": element.IDBeneficiaire.toString(),
                         "Categorie": element.IDCategorie.toString(),
@@ -69,5 +70,7 @@ export class DepensesComponent implements AfterViewInit {
         }
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.refresh = true;
+        window.dispatchEvent(new Event('resize'))
     }
 }

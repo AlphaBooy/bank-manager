@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 
 import { ApexAxisChartSeries, ApexChart, ChartComponent, ApexDataLabels, ApexPlotOptions, ApexYAxis, ApexTitleSubtitle, ApexXAxis, ApexFill } from "ng-apexcharts";
 import {DepensesCategorie, DepensesMois} from "../../../interfaces/depenses";
@@ -13,6 +13,7 @@ export type ChartOptions = { series: ApexAxisChartSeries; chart: ApexChart; data
     styleUrls: ['./depenses-bar-chart.component.scss']
 })
 export class DepensesBarChartComponent implements OnInit {
+    @Input() input: boolean;
     @ViewChild("chart") chart: ChartComponent;
     public chartOptions!: Partial<ChartOptions> | any;
     date: Date = new Date();
@@ -20,7 +21,7 @@ export class DepensesBarChartComponent implements OnInit {
 
     constructor(public depensesService: DepensesService) {
         this.chartOptions = {
-            series: [{ name: "Depenses / Mois", data: [] }],
+            series: [],
             chart: { height: 350, type: "bar" },
             plotOptions: { bar: { dataLabels: { position: "top" } } },
             dataLabels: {
@@ -69,10 +70,12 @@ export class DepensesBarChartComponent implements OnInit {
     ngOnInit(): void {
         this.depensesService.getDepenseByMois().subscribe((res: any) => {
             res.forEach((element: DepensesMois) => {
-                this.data[element.MOIS] = element.TOTAL;
+                this.data[element.MOIS - 1] = element.TOTAL;
             });
             this.chartOptions.series.push({ name: "Depenses / Mois", data: this.data });
         });
     }
 
+    ngOnChanges() {
+    }
 }
