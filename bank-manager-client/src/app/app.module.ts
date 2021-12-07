@@ -20,11 +20,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RevenusComponent } from './components/revenus/revenus.component';
 import { DepensesComponent } from './components/depenses/depenses.component';
-import {MatTableModule} from "@angular/material/table";
-import {MatSortModule} from "@angular/material/sort";
-import {MatPaginatorModule} from "@angular/material/paginator";
-import {MatInputModule} from "@angular/material/input";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatInputModule } from "@angular/material/input";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { NgApexchartsModule } from "ng-apexcharts";
+import { CategoriesDonutChartComponent } from './components/graphs/categories-donut-chart/categories-donut-chart.component';
+import { DepensesBarChartComponent } from './components/graphs/depenses-bar-chart/depenses-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     AccueilComponent,
     FilDArianeComponent,
     RevenusComponent,
-    DepensesComponent
+    DepensesComponent,
+    CategoriesDonutChartComponent,
+    DepensesBarChartComponent
   ],
     imports: [
         BrowserModule,
@@ -52,7 +57,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MatSortModule,
         MatPaginatorModule,
         MatInputModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        NgApexchartsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,3 +16,13 @@ export interface DepensesDisplay {
     Categorie: string,
     Description: string
 }
+
+export interface DepensesCategorie {
+    TOTAL: number,
+    nom: string
+}
+
+export interface DepensesMois {
+    TOTAL: number,
+    MOIS: number
+}

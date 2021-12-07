@@ -8,6 +8,11 @@ router.get('/', async function(req, res, next) {
     res.json(categoriesArray);
 });
 
+router.get('/noms', async function(req, res, next) {
+    let categoriesArray = await categories.findAllNoms();
+    res.json(categoriesArray);
+});
+
 router.get('/:id', async function(req, res, next) {
     let IDCategorie = req.params.id;
     let categorie = await categories.findByPk(IDCategorie);

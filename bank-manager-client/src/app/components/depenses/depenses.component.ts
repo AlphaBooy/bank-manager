@@ -59,7 +59,6 @@ export class DepensesComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         for (let i = 0; i < this.dataSource.data.length; i++) {
-            console.log(this.dataSource.data[i])
             this.beneficiareService.getID(parseInt(this.dataSource.data[i].Beneficiaire)).subscribe({
                 next: (res: any) => { this.dataSource.data[i].Beneficiaire = res.nom; }
             });

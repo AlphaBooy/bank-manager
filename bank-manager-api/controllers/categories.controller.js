@@ -27,5 +27,19 @@ module.exports = {
                 console.log(chalk.red(err.message ||
                     "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
             });
-    }
+    },
+
+    async findAllNoms() {
+        return Categories.findAll()
+            .then(data => {
+                console.log(chalk.green("Les catégories ont toutes été retournées avec succès !"));
+                return data.map(function(categorie) {
+                    return categorie.nom;
+                })
+            })
+            .catch(err => {
+                console.log(chalk.red(err.message ||
+                    "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
+            });
+    },
 }

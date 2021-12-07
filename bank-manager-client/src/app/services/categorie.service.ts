@@ -22,4 +22,9 @@ export class CategorieService {
         const apiGet = this.apiBaseUrl + '/categories';
         return this.http.get(apiGet, {responseType: 'json'});
     }
+
+    getAllNames(): Observable<object> {
+        const apiGet = this.apiBaseUrl + '/categories/noms';
+        return this.http.get(apiGet, {responseType: 'json'});
+    }
 }

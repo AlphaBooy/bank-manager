@@ -1,5 +1,13 @@
 <div class="container-fluid">
     <div class="row">
+        <div class="col-4">
+            <app-categories-donut-chart></app-categories-donut-chart>
+        </div>
+        <div class="col-8">
+            <app-depenses-bar-chart></app-depenses-bar-chart>
+        </div>
+    </div>
+    <div class="row">
         <div class="mat-elevation-z8">
             <table mat-table class="col-12" [dataSource]="dataSource" matSort>
                 <ng-container matColumnDef="ID">
