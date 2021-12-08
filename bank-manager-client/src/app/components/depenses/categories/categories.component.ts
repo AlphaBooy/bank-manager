@@ -1,37 +1,41 @@
-import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import { DepensesService } from "../../services/depenses.service";
-import DateUtilities from "../../utils/DateUtilities";
-import PriceUtilities from "../../utils/PriceUtilities";
-import { BeneficiaireService } from "../../services/beneficiaire.service";
-import { CategorieService } from "../../services/categorie.service";
-import { Categories } from "../../interfaces/categories";
-import { Beneficiaires } from "../../interfaces/beneficiaires";
-import { Depenses, DepensesDisplay } from "../../interfaces/depenses";
-import { MatTableDataSource } from "@angular/material/table";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Depenses, DepensesDisplay} from "../../../interfaces/depenses";
+import {Beneficiaires} from "../../../interfaces/beneficiaires";
+import {Categories} from "../../../interfaces/categories";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {DepensesService} from "../../../services/depenses.service";
+import {BeneficiaireService} from "../../../services/beneficiaire.service";
+import {CategorieService} from "../../../services/categorie.service";
+import DateUtilities from "../../../utils/DateUtilities";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
-    selector: 'app-depenses',
-    templateUrl: './depenses.component.html',
-    styleUrls: ['./depenses.component.scss']
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.scss']
 })
-export class DepensesComponent implements AfterViewInit {
+export class CategoriesComponent implements AfterViewInit {
     isLoading = true;
     depenses: Depenses[] = [];
     depensesDisplay: Array<DepensesDisplay> = [];
     beneficiaires: Beneficiaires[] = [];
     categories: Categories[] = [];
 
-    displayedColumns: string[] = [ 'ID', 'Montant', 'Date', 'Beneficiaire', 'Categorie', 'Description' ];
+    displayedColumns: string[] = [ 'ID', 'Montant', 'Date', 'Beneficiaire', 'Description' ];
     dataSource: MatTableDataSource<DepensesDisplay>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     refresh: boolean = false;
+    private categorieRequested: number;
 
-    constructor(public depensesService: DepensesService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService) {
-        this.depensesService.getAll().subscribe({
+    constructor(public depensesService: DepensesService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService, private route: ActivatedRoute) {
+        this.route.queryParams.subscribe(params => {
+            this.categorieRequested = params['id'];
+        });
+        this.depensesService.getDepenseCategorie(this.categorieRequested).subscribe({
             next: (res: any) => {
                 res.forEach((element: Depenses) => {
                     this.depensesDisplay.push({
@@ -39,7 +43,7 @@ export class DepensesComponent implements AfterViewInit {
                         "montant": element.montant,
                         "Date": DateUtilities.dateFormat(element.Date),
                         "Beneficiaire": element.IDBeneficiaire.toString(),
-                        "Categorie": element.IDCategorie.toString(),
+                        "Categorie": "",
                         "Description": element.Description
                     })
                     this.depenses.push(element);
@@ -61,10 +65,6 @@ export class DepensesComponent implements AfterViewInit {
         for (let i = 0; i < this.dataSource.data.length; i++) {
             this.beneficiareService.getID(parseInt(this.dataSource.data[i].Beneficiaire)).subscribe({
                 next: (res: any) => { this.dataSource.data[i].Beneficiaire = res.nom; }
-            });
-
-            this.categorieService.getID((parseInt(this.dataSource.data[i].Categorie))).subscribe({
-                next: (res: any) => { this.dataSource.data[i].Categorie = res.nom; }
             });
         }
         this.dataSource.paginator = this.paginator;

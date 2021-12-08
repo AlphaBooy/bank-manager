@@ -19,7 +19,8 @@ export interface DepensesDisplay {
 
 export interface DepensesCategorie {
     TOTAL: number,
-    nom: string
+    nom: string,
+    ID: number
 }
 
 export interface DepensesMois {

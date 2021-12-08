@@ -13,6 +13,12 @@ router.get('/categories', async function(req, res, next) {
     res.json(depensesCategorieArray[0]);
 });
 
+router.get('/categories/:id', async function(req, res, next) {
+    let IDCategorie = req.params.id;
+    let depensesCategorieArray = await depenses.findByCategories(IDCategorie);
+    res.json(depensesCategorieArray[0]);
+});
+
 router.get('/mois', async function(req, res, next) {
     let depensesMoisArray = await depenses.findAllMounth();
     res.json(depensesMoisArray[0]);

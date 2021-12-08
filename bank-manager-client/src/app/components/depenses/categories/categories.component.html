@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="mat-elevation-z8">
+            <table mat-table class="col-12" [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="ID">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.ID }} </td>
+                </ng-container>
+                <ng-container matColumnDef="Montant">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.montant }}€</td>
+                </ng-container>
+                <ng-container matColumnDef="Date">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.Date }} </td>
+                </ng-container>
+                <ng-container matColumnDef="Beneficiaire">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Bénéficiaire </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.Beneficiaire }} </td>
+                </ng-container>
+                <ng-container matColumnDef="Description">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.Description }} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
+                <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </div>
+</div>

@@ -28,6 +28,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { NgApexchartsModule } from "ng-apexcharts";
 import { CategoriesDonutChartComponent } from './components/graphs/categories-donut-chart/categories-donut-chart.component';
 import { DepensesBarChartComponent } from './components/graphs/depenses-bar-chart/depenses-bar-chart.component';
+import { CategoriesComponent } from './components/depenses/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DepensesBarChartComponent } from './components/graphs/depenses-bar-char
     RevenusComponent,
     DepensesComponent,
     CategoriesDonutChartComponent,
-    DepensesBarChartComponent
+    DepensesBarChartComponent,
+    CategoriesComponent
   ],
     imports: [
         BrowserModule,

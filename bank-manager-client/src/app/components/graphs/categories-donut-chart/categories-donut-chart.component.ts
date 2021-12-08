@@ -3,6 +3,7 @@ import {ApexNonAxisChartSeries, ApexResponsive, ApexChart, ChartComponent, ApexL
 import {CategorieService} from "../../../services/categorie.service";
 import {DepensesService} from "../../../services/depenses.service";
 import {DepensesCategorie} from "../../../interfaces/depenses";
+import { Router } from "@angular/router"
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -21,13 +22,20 @@ export class CategoriesDonutChartComponent implements OnInit {
     @Input() input: boolean;
     @ViewChild("chart") chart: ChartComponent;
     public chartOptions!: Partial<ChartOptions> | any;
+    public indexToID: number[];
 
-    constructor(public categorieService: CategorieService, public depensesService: DepensesService) {
+    constructor(public categorieService: CategorieService, public depensesService: DepensesService, public router: Router) {
         this.chartOptions = {
             series: [],
             chart: {
                 width: 500,
-                type: "pie"
+                type: "pie",
+                events: {
+                    dataPointSelection: function(event: any, chartContext: any, config: any) {
+                        //console.log((chartContext.w.config.labels[config.dataPointIndex + 1]).split(" ")[0])
+                        document.location.href = "depenses/categories?id=" + (chartContext.w.config.labels[config.dataPointIndex]).split(" ")[0];
+                    }
+                }
             },
             labels: [],
             legend: {
@@ -58,7 +66,7 @@ export class CategoriesDonutChartComponent implements OnInit {
         this.depensesService.getDepenseByCategorie().subscribe((res: any) => {
             res.forEach((element: DepensesCategorie) => {
                 this.chartOptions.series.push(element.TOTAL);
-                this.chartOptions.labels.push(element.nom);
+                this.chartOptions.labels.push(element.ID + " " + element.nom);
             });
         });
     }
