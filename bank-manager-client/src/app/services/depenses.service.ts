@@ -17,8 +17,8 @@ export class DepensesService {
     return this.http.get(apiGet, { responseType: 'json' });
   }
 
-  getDepenseByCategorie(): Observable<object> {
-      const apiGet = this.apiBaseUrl + '/depenses/categories';
+  getDepenseByCategorie(year: string | number): Observable<object> {
+      const apiGet = this.apiBaseUrl + '/depenses/categories/year/' + year;
       return this.http.get(apiGet, { responseType: 'json' });
   }
 
@@ -27,8 +27,8 @@ export class DepensesService {
         return this.http.get(apiGet, { responseType: 'json' });
     }
 
-    getDepenseByMois(): Observable<object> {
-        const apiGet = this.apiBaseUrl + '/depenses/mois';
+    getDepenseByMois(year: string | number): Observable<object> {
+        const apiGet = this.apiBaseUrl + '/depenses/mois/' + year;
         return this.http.get(apiGet, { responseType: 'json' });
     }
 }

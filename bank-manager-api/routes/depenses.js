@@ -8,8 +8,9 @@ router.get('/', async function(req, res, next) {
     res.json(depensesArray);
 });
 
-router.get('/categories', async function(req, res, next) {
-    let depensesCategorieArray = await depenses.findAllCategories();
+router.get('/categories/year/:year', async function(req, res, next) {
+    let year = req.params.year;
+    let depensesCategorieArray = await depenses.findAllCategories(year);
     res.json(depensesCategorieArray[0]);
 });
 
@@ -19,8 +20,9 @@ router.get('/categories/:id', async function(req, res, next) {
     res.json(depensesCategorieArray[0]);
 });
 
-router.get('/mois', async function(req, res, next) {
-    let depensesMoisArray = await depenses.findAllMounth();
+router.get('/mois/:year', async function(req, res, next) {
+    let year = req.params.year
+    let depensesMoisArray = await depenses.findAllMounth(year);
     res.json(depensesMoisArray[0]);
 });
 

@@ -20,6 +20,7 @@ export type ChartOptions = {
 })
 export class CategoriesDonutChartComponent implements OnInit {
     @Input() input: boolean;
+    @Input() year: number;
     @ViewChild("chart") chart: ChartComponent;
     public chartOptions!: Partial<ChartOptions> | any;
     public indexToID: number[];
@@ -32,7 +33,6 @@ export class CategoriesDonutChartComponent implements OnInit {
                 type: "pie",
                 events: {
                     dataPointSelection: function(event: any, chartContext: any, config: any) {
-                        //console.log((chartContext.w.config.labels[config.dataPointIndex + 1]).split(" ")[0])
                         document.location.href = "depenses/categories?id=" + (chartContext.w.config.labels[config.dataPointIndex]).split(" ")[0];
                     }
                 }
@@ -63,15 +63,22 @@ export class CategoriesDonutChartComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.depensesService.getDepenseByCategorie().subscribe((res: any) => {
+        this.getDepensesPerCategories()
+    }
+
+    ngOnChanges() {
+        //console.log(this.input);
+        this.getDepensesPerCategories()
+    }
+
+    getDepensesPerCategories() {
+        this.chartOptions.series = [];
+        this.chartOptions.labels = [];
+        this.depensesService.getDepenseByCategorie(this.year).subscribe((res: any) => {
             res.forEach((element: DepensesCategorie) => {
                 this.chartOptions.series.push(element.TOTAL);
                 this.chartOptions.labels.push(element.ID + " " + element.nom);
             });
         });
-    }
-
-    ngOnChanges() {
-        console.log(this.input);
     }
 }

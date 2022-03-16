@@ -29,6 +29,9 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { CategoriesDonutChartComponent } from './components/graphs/categories-donut-chart/categories-donut-chart.component';
 import { DepensesBarChartComponent } from './components/graphs/depenses-bar-chart/depenses-bar-chart.component';
 import { CategoriesComponent } from './components/depenses/categories/categories.component';
+import { NouvelleDepenseComponent } from './components/depenses/nouvelle-depense/nouvelle-depense.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { CategoriesComponent } from './components/depenses/categories/categories
     DepensesComponent,
     CategoriesDonutChartComponent,
     DepensesBarChartComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    NouvelleDepenseComponent
   ],
     imports: [
         BrowserModule,
@@ -60,7 +64,9 @@ import { CategoriesComponent } from './components/depenses/categories/categories
         MatPaginatorModule,
         MatInputModule,
         MatProgressSpinnerModule,
-        NgApexchartsModule
+        NgApexchartsModule,
+        ReactiveFormsModule,
+        MatCardModule
     ],
   providers: [],
   bootstrap: [AppComponent]

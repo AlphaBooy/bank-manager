@@ -1,0 +1,45 @@
+<div class="container border border-secondary">
+    <div class="row">
+        <h2 class="text-secondary text-center">Déclarer la dépense n°375</h2>
+        <form class="w-75 mx-auto">
+            <div class="row">
+                <div class="col-4">
+                    <!-- DATEPICKER INLINE POUR LA SELECTION DE LA DATE DE LA DEPENSE -->
+                    <mat-card class="demo-inline-calendar-card">
+                        <mat-calendar [(selected)]="selected"></mat-calendar>
+                    </mat-card>
+                </div>
+                <div class="col-4">
+                    <!-- CHAMP DE SELECTION DU MONTANT DE LA DEPENSE -->
+                    <input type="text" class="form-control my-4" placeholder="Montant de la dépense">
+                    <!-- CHAMP DE SELECTION DU BENEFICIAIRE DE LA DEPENSE -->
+                    <mat-form-field class="w-100 my-3">
+                        <mat-label class="text-white">Bénéficiaire :</mat-label>
+                        <mat-select class="text-primary" [formControl]="beneficiaireList">
+                            <mat-option *ngFor="let beneficiaire of beneficiaires" [value]="beneficiaire">{{beneficiaire.nom}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <!-- CHAMP DE SELECTION DE LA CATEGORIE DE LA DEPENSE -->
+                    <mat-form-field class="w-100 my-3">
+                        <mat-label class="text-white">Catégorie :</mat-label>
+                        <mat-select class="text-primary" [formControl]="categorieList">
+                            <mat-option *ngFor="let categorie of categories" [value]="categorie">{{categorie.nom}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <!-- CHAMP DE SELECTION OBLIGATOIRE OU NON DE LA DEPENSE -->
+                    <mat-form-field class="w-100 my-3">
+                        <mat-label class="text-white">Obligatoire :</mat-label>
+                        <mat-select class="text-primary" [formControl]="obligatoireList">
+                            <mat-option *ngFor="let obli of ['Obligatoire', 'Facultative']" [value]="obli">{{obli}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-4">
+                    <!-- CHAMP DE RENSEIGNEMENT DE LA DESCRIPTION DE LA DEPENSE -->
+                    <textarea class="form-control my-4" placeholder="Description de la dépense" style="height: 300px"></textarea>
+                    <button type="submit" class="btn btn-secondary w-100 mb-3">Créer la dépense</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

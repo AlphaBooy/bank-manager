@@ -14,6 +14,7 @@ export type ChartOptions = { series: ApexAxisChartSeries; chart: ApexChart; data
 })
 export class DepensesBarChartComponent implements OnInit {
     @Input() input: boolean;
+    @Input() year: number;
     @ViewChild("chart") chart: ChartComponent;
     public chartOptions!: Partial<ChartOptions> | any;
     date: Date = new Date();
@@ -68,14 +69,22 @@ export class DepensesBarChartComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.depensesService.getDepenseByMois().subscribe((res: any) => {
+        this.getDepensesByMounth()
+    }
+
+    ngOnChanges() {
+        console.log(this.year)
+        this.getDepensesByMounth()
+    }
+
+    getDepensesByMounth() {
+        this.data = [0,0,0,0,0,0,0,0,0,0,0,0]
+        this.chartOptions.series = [{ name: "Depenses / Mois", data: this.data }];
+        this.depensesService.getDepenseByMois(this.year).subscribe((res: any) => {
             res.forEach((element: DepensesMois) => {
                 this.data[element.MOIS - 1] = element.TOTAL;
             });
             this.chartOptions.series.push({ name: "Depenses / Mois", data: this.data });
         });
-    }
-
-    ngOnChanges() {
     }
 }
