@@ -61,7 +61,7 @@ export class DepensesBarChartComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getDepensesByMounth()
+        //this.getDepensesByMounth()
     }
 
     ngOnChanges() {
@@ -70,7 +70,7 @@ export class DepensesBarChartComponent implements OnInit {
 
     getDepensesByMounth() {
         this.data = [0,0,0,0,0,0,0,0,0,0,0,0]
-        this.chartOptions.series = [{ name: "Depenses / Mois", data: this.data }];
+        this.chartOptions.series = [];
         this.depensesService.getDepenseByMois(this.year).subscribe((res: any) => {
             res.forEach((element: DepensesMois) => {
                 this.data[element.MOIS - 1] = element.TOTAL;

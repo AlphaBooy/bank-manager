@@ -17,14 +17,14 @@ import {FormControl} from "@angular/forms";
     templateUrl: './depenses.component.html',
     styleUrls: ['./depenses.component.scss']
 })
-export class DepensesComponent implements AfterViewInit {
+export class DepensesComponent implements AfterViewInit, OnInit {
     isLoading = true;
     depenses: Depenses[] = [];
     depensesDisplay: Array<DepensesDisplay> = [];
     beneficiaires: Beneficiaires[] = [];
     categories: Categories[] = [];
     todaysDate = new Date()
-    selectedYear: number = this.todaysDate.getFullYear()
+    selectedYear: number
 
     displayedColumns: string[] = [ 'ID', 'Montant', 'Date', 'Beneficiaire', 'Categorie', 'Description' ];
     dataSource: MatTableDataSource<DepensesDisplay>;
@@ -34,8 +34,12 @@ export class DepensesComponent implements AfterViewInit {
     refresh: boolean = false;
     YearSelect = new FormControl();
 
-    constructor(public depensesService: DepensesService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService) {
-        this.generateDisplay(this.selectedYear);
+    constructor(public depensesService: DepensesService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService) {}
+
+    ngOnInit() {
+        this.selectedYear = this.todaysDate.getFullYear()
+        this.YearSelect.setValue(this.selectedYear)
+        this.changeYear()
     }
 
     ngAfterViewInit() {
@@ -61,7 +65,6 @@ export class DepensesComponent implements AfterViewInit {
             /* Add pages, filters... to the array of depenses */
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-            this.refresh = true;
             window.dispatchEvent(new Event('resize'))
         }
     }

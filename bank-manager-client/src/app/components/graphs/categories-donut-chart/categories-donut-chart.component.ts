@@ -63,11 +63,10 @@ export class CategoriesDonutChartComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getDepensesPerCategories()
+        //this.getDepensesPerCategories()
     }
 
     ngOnChanges() {
-        //console.log(this.input);
         this.getDepensesPerCategories()
     }
 
