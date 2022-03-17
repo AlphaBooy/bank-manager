@@ -8,6 +8,11 @@ router.get('/', async function(req, res, next) {
     res.json(beneficiairesArray);
 });
 
+router.get('/getTotal', async function(req, res, next) {
+    let beneficiairesArray = await beneficiaires.findAllWithTotal();
+    res.json(beneficiairesArray);
+});
+
 router.get('/:id', async function(req, res, next) {
     let IDBeneficiaire = req.params.id;
     let beneficiaire = await beneficiaires.findByPk(IDBeneficiaire);

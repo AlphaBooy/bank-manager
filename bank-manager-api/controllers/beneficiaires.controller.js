@@ -17,6 +17,18 @@ module.exports = {
             });
     },
 
+    async findAllWithTotal() {
+        return sequelize.query("SELECT d.IDBeneficiaire, b.nom, SUM(d.montant) AS TOTAL FROM `depenses` d JOIN `beneficiaires` b ON d.IDBeneficiaire = b.ID GROUP BY d.IDBeneficiaire;")
+            .then(data => {
+                console.log(chalk.green("Les dépenses triées par bénéficiaire ont toutes été retournées avec succès !"));
+                return data[0];
+            })
+            .catch(err => {
+                console.log(chalk.red(err.message ||
+                    "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
+            });
+    },
+
     async findByPk(IDBeneficiaire) {
         return Beneficiaires.findByPk(IDBeneficiaire)
             .then(data => {

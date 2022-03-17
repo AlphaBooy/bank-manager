@@ -1,10 +1,12 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AccueilComponent} from "./components/accueil/accueil.component";
-import {DepensesComponent} from "./components/depenses/depenses.component";
-import {RevenusComponent} from "./components/revenus/revenus.component";
-import {CategoriesComponent} from "./components/depenses/categories/categories.component";
-import {NouvelleDepenseComponent} from "./components/depenses/nouvelle-depense/nouvelle-depense.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AccueilComponent } from "./components/accueil/accueil.component";
+import { DepensesComponent } from "./components/depenses/depenses.component";
+import { RevenusComponent } from "./components/revenus/revenus.component";
+import { CategoriesComponent } from "./components/categories/categories.component";
+import { NouvelleDepenseComponent } from "./components/depenses/nouvelle-depense/nouvelle-depense.component";
+import { CrediteursComponent } from "./components/crediteurs/crediteurs.component";
+import { BeneficiairesComponent } from "./components/beneficiaires/beneficiaires.component";
 
 const routes: Routes = [
     {
@@ -59,6 +61,36 @@ const routes: Routes = [
     },
     {
         path: 'revenus', component: RevenusComponent, data: {breadcrumb: {label: "Revenus", info: "monetization_on"}}
+    },
+    {
+        path: 'categories',
+        component: CategoriesComponent,
+        data: {
+            breadcrumb: {
+                label: "Catégories",
+                info: "donut_small"
+            }
+        }
+    },
+    {
+        path: 'crediteurs',
+        component: CrediteursComponent,
+        data: {
+            breadcrumb: {
+                label: "Créditeurs",
+                info: "beach_access"
+            }
+        }
+    },
+    {
+        path: 'beneficiaires',
+        component: BeneficiairesComponent,
+        data: {
+            breadcrumb: {
+                label: "Bénéficiaires",
+                info: "meeting_room"
+            }
+        }
     }
 ]
 

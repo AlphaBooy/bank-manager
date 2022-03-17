@@ -32,6 +32,8 @@ import { CategoriesComponent } from './components/depenses/categories/categories
 import { NouvelleDepenseComponent } from './components/depenses/nouvelle-depense/nouvelle-depense.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
+import { CrediteursComponent } from './components/depenses/crediteurs/crediteurs.component';
+import { BeneficiairesComponent } from './components/beneficiaires/beneficiaires.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {MatCardModule} from "@angular/material/card";
     CategoriesDonutChartComponent,
     DepensesBarChartComponent,
     CategoriesComponent,
-    NouvelleDepenseComponent
+    NouvelleDepenseComponent,
+    CrediteursComponent,
+    BeneficiairesComponent
   ],
     imports: [
         BrowserModule,

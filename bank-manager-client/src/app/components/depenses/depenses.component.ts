@@ -84,6 +84,7 @@ export class DepensesComponent implements AfterViewInit, OnInit {
                 res.forEach((element: Depenses) => {
                     /* If the element year is equal to the date selected by the user : */
                     if (parseInt(element.Date.toString().split('-')[0]) === year) {
+                        element.Description = element.Description == null || element.Description == "null" ? "" : element.Description;
                         /* Make every format method for each fields in the array */
                         this.depensesDisplay.push({
                             "ID": element.ID,

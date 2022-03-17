@@ -22,4 +22,9 @@ export class BeneficiaireService {
         const apiGet = this.apiBaseUrl + '/beneficiaires';
         return this.http.get(apiGet, {responseType: 'json'});
     }
+
+    getAllTotal(): Observable<object> {
+        const apiGet = this.apiBaseUrl + "/beneficiaires/getTotal";
+        return this.http.get(apiGet, {responseType: 'json'});
+    }
 }
