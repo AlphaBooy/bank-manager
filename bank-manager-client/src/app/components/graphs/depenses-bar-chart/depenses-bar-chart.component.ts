@@ -56,14 +56,6 @@ export class DepensesBarChartComponent implements OnInit {
                 axisBorder: { show: false },
                 axisTicks: { show: false },
                 labels: { show: false, }
-            },
-            title: {
-                text: "Progression des dépenses en " + this.date.getFullYear(),
-                offsetY: 325,
-                align: "center",
-                style: {
-                    color: "#FFC107"
-                }
             }
         };
     }
@@ -73,7 +65,6 @@ export class DepensesBarChartComponent implements OnInit {
     }
 
     ngOnChanges() {
-        console.log(this.year)
         this.getDepensesByMounth()
     }
 

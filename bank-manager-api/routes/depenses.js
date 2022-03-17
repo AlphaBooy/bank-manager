@@ -26,4 +26,16 @@ router.get('/mois/:year', async function(req, res, next) {
     res.json(depensesMoisArray[0]);
 });
 
+router.post('/',async function (req, res, next) {
+    let montant = req.body.montant
+    let date = req.body.date
+    let IDBeneficiaire = req.body.IDBeneficiaire
+    let IDCategorie = req.body.IDCategorie
+    let Description = req.body.Description
+    let Obligatoire = req.body.Obligatoire
+    console.log(req.body)
+    let data = await depenses.newDepense(montant, date, IDBeneficiaire, IDCategorie, Description, Obligatoire)
+    res.send(data)
+});
+
 module.exports = router;
