@@ -7,6 +7,7 @@ import { CategoriesComponent } from "./components/categories/categories.componen
 import { NouvelleDepenseComponent } from "./components/depenses/nouvelle-depense/nouvelle-depense.component";
 import { CrediteursComponent } from "./components/crediteurs/crediteurs.component";
 import { BeneficiairesComponent } from "./components/beneficiaires/beneficiaires.component";
+import { BeneficiairesDetailsComponent }  from "./components/depenses/beneficiairesDetails/beneficiairesDetails.component";
 
 const routes: Routes = [
     {
@@ -40,12 +41,22 @@ const routes: Routes = [
         }
     },
     {
-        path: 'depenses/categories',
+        path: 'depenses/categoriesDetails',
         component: CategoriesComponent,
         data: {
             breadcrumb: {
                 label: "Catégorie",
                 info: "pie_chart"
+            }
+        }
+    },
+    {
+        path: 'depenses/beneficiaires',
+        component: BeneficiairesDetailsComponent,
+        data: {
+            breadcrumb: {
+                label: "Bénéficiaires",
+                info: "meeting_room"
             }
         }
     },
@@ -60,7 +71,14 @@ const routes: Routes = [
         }
     },
     {
-        path: 'revenus', component: RevenusComponent, data: {breadcrumb: {label: "Revenus", info: "monetization_on"}}
+        path: 'revenus',
+        component: RevenusComponent,
+        data: {
+            breadcrumb: {
+                label: "Revenus",
+                info: "monetization_on"
+            }
+        }
     },
     {
         path: 'categories',

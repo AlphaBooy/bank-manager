@@ -18,7 +18,7 @@ import {FormControl} from "@angular/forms";
     styleUrls: ['./depenses.component.scss']
 })
 export class DepensesComponent implements AfterViewInit, OnInit {
-    isLoading = true;
+    isLoading: boolean = true;
     depenses: Depenses[] = [];
     depensesDisplay: Array<DepensesDisplay> = [];
     beneficiaires: Beneficiaires[] = [];
@@ -31,7 +31,6 @@ export class DepensesComponent implements AfterViewInit, OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    refresh: boolean = false;
     YearSelect = new FormControl();
 
     constructor(public depensesService: DepensesService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService) {}

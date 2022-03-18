@@ -1,9 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ApexNonAxisChartSeries, ApexResponsive, ApexChart, ChartComponent, ApexLegend} from "ng-apexcharts";
-import {CategorieService} from "../../../services/categorie.service";
 import {DepensesService} from "../../../services/depenses.service";
-import {DepensesCategorie} from "../../../interfaces/depenses";
 import { Router } from "@angular/router"
+import {BeneficiaireService} from "../../../services/beneficiaire.service";
 
 export type ChartOptions = {
     series: ApexNonAxisChartSeries;
@@ -13,19 +12,24 @@ export type ChartOptions = {
     labels: any;
 };
 
+interface BeneficiairesDisplay {
+    "IDBeneficiaire": number,
+    "nom": string,
+    "TOTAL": number
+}
+
 @Component({
-    selector: 'app-categories-donut-chart',
-    templateUrl: './categories-donut-chart.component.html',
-    styleUrls: ['./categories-donut-chart.component.scss']
+  selector: 'app-beneficiaire-donut-chart',
+  templateUrl: './beneficiaire-donut-chart.component.html',
+  styleUrls: ['./beneficiaire-donut-chart.component.scss']
 })
-export class CategoriesDonutChartComponent implements OnInit {
+
+export class BeneficiaireDonutChartComponent implements OnInit {
     @Input() input: boolean;
-    @Input() year: number;
     @ViewChild("chart") chart: ChartComponent;
     public chartOptions!: Partial<ChartOptions> | any;
-    public indexToID: number[];
 
-    constructor(public categorieService: CategorieService, public depensesService: DepensesService, public router: Router) {
+    constructor(public beneficiaireService: BeneficiaireService, public depensesService: DepensesService, public router: Router) {
         this.chartOptions = {
             series: [],
             chart: {
@@ -33,7 +37,7 @@ export class CategoriesDonutChartComponent implements OnInit {
                 type: "pie",
                 events: {
                     dataPointSelection: function(event: any, chartContext: any, config: any) {
-                        document.location.href = "depenses/categoriesDetails?id=" + (chartContext.w.config.labels[config.dataPointIndex]).split(" ")[0];
+                        document.location.href = "depenses/beneficiaires?id=" + (chartContext.w.config.labels[config.dataPointIndex]).split(" ")[0];
                     }
                 }
             },
@@ -63,21 +67,22 @@ export class CategoriesDonutChartComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //this.getDepensesPerCategories()
+        //this.getBeneficiairesPerCategories()
     }
 
     ngOnChanges() {
-        this.getDepensesPerCategories()
+        this.getBeneficiairesPerCategories()
     }
 
-    getDepensesPerCategories() {
+    getBeneficiairesPerCategories() {
         this.chartOptions.series = [];
         this.chartOptions.labels = [];
-        this.depensesService.getDepenseByCategorie(this.year).subscribe((res: any) => {
-            res.forEach((element: DepensesCategorie) => {
+        this.beneficiaireService.getAllTotal().subscribe((res: any) => {
+            res.forEach((element: BeneficiairesDisplay) => {
                 this.chartOptions.series.push(element.TOTAL);
-                this.chartOptions.labels.push(element.ID + " " + element.nom);
+                this.chartOptions.labels.push(element.IDBeneficiaire + " " + element.nom);
             });
         });
     }
 }
+

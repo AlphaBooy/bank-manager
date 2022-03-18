@@ -8,13 +8,13 @@ router.get('/', async function(req, res, next) {
     res.json(depensesArray);
 });
 
-router.get('/categories/year/:year', async function(req, res, next) {
+router.get('/categoriesDetails/year/:year', async function(req, res, next) {
     let year = req.params.year;
     let depensesCategorieArray = await depenses.findAllCategories(year);
     res.json(depensesCategorieArray[0]);
 });
 
-router.get('/categories/:id', async function(req, res, next) {
+router.get('/categoriesDetails/:id', async function(req, res, next) {
     let IDCategorie = req.params.id;
     let depensesCategorieArray = await depenses.findByCategories(IDCategorie);
     res.json(depensesCategorieArray[0]);

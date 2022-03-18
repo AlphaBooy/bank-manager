@@ -12,11 +12,11 @@ import DateUtilities from "../../../utils/DateUtilities";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss']
+  selector: 'app-categoriesDetails',
+  templateUrl: './categoriesDetails.component.html',
+  styleUrls: ['./categoriesDetails.component.scss']
 })
-export class CategoriesComponent implements AfterViewInit {
+export class CategoriesDetailsComponent implements AfterViewInit {
     isLoading = true;
     depenses: Depenses[] = [];
     depensesDisplay: Array<DepensesDisplay> = [];

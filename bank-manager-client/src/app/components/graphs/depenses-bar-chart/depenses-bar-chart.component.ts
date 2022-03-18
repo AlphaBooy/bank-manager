@@ -70,7 +70,7 @@ export class DepensesBarChartComponent implements OnInit {
 
     getDepensesByMounth() {
         this.data = [0,0,0,0,0,0,0,0,0,0,0,0]
-        this.chartOptions.series = [];
+        this.chartOptions.series = [{ name: "Depenses / Mois", data: this.data }];
         this.depensesService.getDepenseByMois(this.year).subscribe((res: any) => {
             res.forEach((element: DepensesMois) => {
                 this.data[element.MOIS - 1] = element.TOTAL;
