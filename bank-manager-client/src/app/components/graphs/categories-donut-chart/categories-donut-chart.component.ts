@@ -33,7 +33,7 @@ export class CategoriesDonutChartComponent implements OnInit {
                 type: "pie",
                 events: {
                     dataPointSelection: function(event: any, chartContext: any, config: any) {
-                        document.location.href = "depenses/categoriesDetails?id=" + (chartContext.w.config.labels[config.dataPointIndex]).split(" ")[0];
+                        document.location.href = "depenses/categories?id=" + (chartContext.w.config.labels[config.dataPointIndex]).split(" ")[0];
                     }
                 }
             },

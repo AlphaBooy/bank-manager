@@ -8,6 +8,7 @@ import { NouvelleDepenseComponent } from "./components/depenses/nouvelle-depense
 import { CrediteursComponent } from "./components/crediteurs/crediteurs.component";
 import { BeneficiairesComponent } from "./components/beneficiaires/beneficiaires.component";
 import { BeneficiairesDetailsComponent }  from "./components/depenses/beneficiairesDetails/beneficiairesDetails.component";
+import {CategoriesDetailsComponent} from "./components/depenses/categoriesDetails/categoriesDetails.component";
 
 const routes: Routes = [
     {
@@ -41,8 +42,8 @@ const routes: Routes = [
         }
     },
     {
-        path: 'depenses/categoriesDetails',
-        component: CategoriesComponent,
+        path: 'depenses/categories',
+        component: CategoriesDetailsComponent,
         data: {
             breadcrumb: {
                 label: "Catégorie",
