@@ -36,6 +36,8 @@ import { CrediteursComponent } from './components/depenses/crediteurs/crediteurs
 import { BeneficiairesComponent } from './components/beneficiaires/beneficiaires.component';
 import { BeneficiairesDetailsComponent } from './components/depenses/beneficiairesDetails/beneficiairesDetails.component';
 import { BeneficiaireDonutChartComponent } from './components/graphs/beneficiaire-donut-chart/beneficiaire-donut-chart.component';
+import { CryptoComponent } from './components/crypto/crypto.component';
+import { EpargneComponent } from './components/epargne/epargne.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { BeneficiaireDonutChartComponent } from './components/graphs/beneficiair
     CrediteursComponent,
     BeneficiairesComponent,
       BeneficiairesDetailsComponent,
-    BeneficiaireDonutChartComponent
+    BeneficiaireDonutChartComponent,
+    CryptoComponent,
+    EpargneComponent
   ],
     imports: [
         BrowserModule,

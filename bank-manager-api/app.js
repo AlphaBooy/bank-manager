@@ -5,12 +5,13 @@ let cookieParser  = require('cookie-parser');
 let logger        = require('morgan');
 let cors          = require('cors');
 
-let indexRouter = require('./routes/index');
-let depensesRouter = require('./routes/depenses');
-let revenusRouter = require('./routes/revenus');
-let categoriesRouter = require('./routes/categories');
-let crediteursRouter = require('./routes/crediteurs');
-let beneficiaireRouter = require('./routes/beneficiaires');
+let indexRouter         = require('./routes/index');
+let depensesRouter      = require('./routes/depenses');
+let revenusRouter       = require('./routes/revenus');
+let categoriesRouter    = require('./routes/categories');
+let crediteursRouter    = require('./routes/crediteurs');
+let beneficiaireRouter  = require('./routes/beneficiaires');
+let cryptoRouter        = require('./routes/cryptos');
 
 let app = express();
 
@@ -31,6 +32,7 @@ app.use('/revenus', revenusRouter);
 app.use('/categories', categoriesRouter);
 app.use('/beneficiaires', beneficiaireRouter);
 app.use('/crediteurs', crediteursRouter);
+app.use('/cryptos', cryptoRouter);
 
 const db = require("./models");
 db.sequelize.sync();

@@ -9,6 +9,8 @@ import { CrediteursComponent } from "./components/crediteurs/crediteurs.componen
 import { BeneficiairesComponent } from "./components/beneficiaires/beneficiaires.component";
 import { BeneficiairesDetailsComponent }  from "./components/depenses/beneficiairesDetails/beneficiairesDetails.component";
 import {CategoriesDetailsComponent} from "./components/depenses/categoriesDetails/categoriesDetails.component";
+import {CryptoComponent} from "./components/crypto/crypto.component";
+import {EpargneComponent} from "./components/epargne/epargne.component";
 
 const routes: Routes = [
     {
@@ -78,6 +80,26 @@ const routes: Routes = [
             breadcrumb: {
                 label: "Revenus",
                 info: "monetization_on"
+            }
+        }
+    },
+    {
+        path: 'crypto',
+        component: CryptoComponent,
+        data: {
+            breadcrumb: {
+                label: "Crypto",
+                info: "polymer"
+            }
+        }
+    },
+    {
+        path: 'epargne',
+        component: EpargneComponent,
+        data: {
+            breadcrumb: {
+                label: "Epargne",
+                info: "local_atm"
             }
         }
     },
