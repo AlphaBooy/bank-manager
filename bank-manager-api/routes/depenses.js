@@ -33,7 +33,6 @@ router.post('/',async function (req, res, next) {
     let IDCategorie = req.body.IDCategorie
     let Description = req.body.Description
     let Obligatoire = req.body.Obligatoire
-    console.log(req.body)
     let data = await depenses.newDepense(montant, date, IDBeneficiaire, IDCategorie, Description, Obligatoire)
     res.send(data)
 });

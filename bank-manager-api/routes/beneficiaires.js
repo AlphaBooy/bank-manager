@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 let beneficiaires = require("../controllers/beneficiaires.controller.js");
+const depenses = require("../controllers/depenses.controller");
 
 router.get('/', async function(req, res, next) {
     let beneficiairesArray = await beneficiaires.findAll();
@@ -19,9 +20,10 @@ router.get('/:id', async function(req, res, next) {
     res.json(beneficiaire);
 });
 
-/* POST revenus. */
-router.post('/', function(req, res, next) {
-    res.send("nothing yet");
+router.post('/', async function(req, res, next) {
+    let nomBeneficiaire = req.body.nomBeneficiaire
+    let data = await beneficiaires.newBeneficiaire(nomBeneficiaire)
+    res.send(data)
 });
 
 module.exports = router;

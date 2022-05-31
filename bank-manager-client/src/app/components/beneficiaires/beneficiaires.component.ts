@@ -5,6 +5,8 @@ import {MatSort} from "@angular/material/sort";
 import {Beneficiaires} from "../../interfaces/beneficiaires";
 import {BeneficiaireService} from "../../services/beneficiaire.service";
 import {DepensesDisplay} from "../../interfaces/depenses";
+import {FormControl} from "@angular/forms";
+import { Router } from "@angular/router";
 
 interface BeneficiairesDisplay {
     "IDBeneficiaire": number,
@@ -22,13 +24,15 @@ export class BeneficiairesComponent implements OnInit, AfterViewInit {
     displayedColumns: string[] = ['ID', 'Beneficiaire', 'Montant'];
     dataSource: MatTableDataSource<BeneficiairesDisplay>;
 
+    nomBeneficiaire = new FormControl();
+
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     beneficiaireDisplay: Array<BeneficiairesDisplay> = [];
     isLoading: boolean = true;
     refresh: boolean = true;
 
-    constructor(private beneficiaireService: BeneficiaireService) {
+    constructor(private beneficiaireService: BeneficiaireService, public router: Router) {
     }
 
     ngOnInit(): void {
@@ -42,7 +46,7 @@ export class BeneficiairesComponent implements OnInit, AfterViewInit {
             /* Add pages, filters... to the array of depenses */
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-            this.refresh = true;663
+            this.refresh = true;
             window.dispatchEvent(new Event('resize'));
         }
     }
@@ -71,5 +75,10 @@ export class BeneficiairesComponent implements OnInit, AfterViewInit {
                 this.isLoading = false;
             }
         });
+    }
+
+    create() {
+        this.beneficiaireService.newBeneficiaire(this.nomBeneficiaire.value).subscribe();
+        this.router.navigate(['/depenses']);
     }
 }

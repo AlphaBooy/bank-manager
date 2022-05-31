@@ -40,8 +40,9 @@ export class NouvelleDepenseComponent implements OnInit {
             }
         });
 
-        this.categorieService.getAll().subscribe({
+        this.categorieService.getAllDepenses().subscribe({
             next: (res: any) => {
+                console.log(res)
                 res.forEach((element: Categories) => {
                     this.categories.push(element);
                 })
