@@ -18,7 +18,7 @@ export class CryptoComponent implements OnInit {
     isLoading: boolean = true;
     cryptos: Cryptos[] = [];
 
-    displayedColumns: string[] = [ 'ID', 'Crypto', 'ACRO','Montant EURO', 'Montant Crypto','Taux de conversion', 'Type', 'Sous Type', 'Date' ];
+    displayedColumns: string[] = [ 'ID', 'Crypto', 'ACRO','Montant EURO', 'Montant Crypto','Taux de conversion', 'Sous Type', 'Date' ];
     dataSource: MatTableDataSource<Cryptos>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -32,7 +32,6 @@ export class CryptoComponent implements OnInit {
       this.cryptosService.getAll().subscribe({
           next: (res: any) => {
               res.forEach((element: Cryptos) => {
-                  console.log(element)
                   this.cryptos.push(element);
               });
           },
