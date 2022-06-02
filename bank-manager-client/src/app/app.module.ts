@@ -38,6 +38,7 @@ import { BeneficiairesDetailsComponent } from './components/depenses/beneficiair
 import { BeneficiaireDonutChartComponent } from './components/graphs/beneficiaire-donut-chart/beneficiaire-donut-chart.component';
 import { CryptoComponent } from './components/crypto/crypto.component';
 import { EpargneComponent } from './components/epargne/epargne.component';
+import { RevenusBarChartComponent } from './components/graphs/revenus-bar-chart/revenus-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EpargneComponent } from './components/epargne/epargne.component';
       BeneficiairesDetailsComponent,
     BeneficiaireDonutChartComponent,
     CryptoComponent,
-    EpargneComponent
+    EpargneComponent,
+    RevenusBarChartComponent
   ],
     imports: [
         BrowserModule,

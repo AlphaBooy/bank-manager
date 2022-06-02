@@ -1,10 +1,22 @@
 <div class="container-fluid">
-    <div class="row">
+    <div class="row my-3">
         <div class="col-4">
-            <app-categories-donut-chart [input]="refresh"></app-categories-donut-chart>
+            <a href="../revenus/new"><button class="btn btn-outline-success w-100">Nouveau revenu</button></a>
         </div>
         <div class="col-8">
-            <app-depenses-bar-chart [input]="refresh"></app-depenses-bar-chart>
+            <mat-form-field appearance="outline" class="w-100 border-primary">
+                <mat-label>Select the year :</mat-label>
+                <mat-select class="text-primary" [formControl]="YearSelect" (selectionChange)="changeYear()">
+                    <mat-option [value]="2021">2021</mat-option>
+                    <mat-option [value]="2022">2022</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4"> </div>
+        <div class="col-8">
+            <app-revenus-bar-chart [year]="selectedYear"></app-revenus-bar-chart>
         </div>
     </div>
     <div class="row">
