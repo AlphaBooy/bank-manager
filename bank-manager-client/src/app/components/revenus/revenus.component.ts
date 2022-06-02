@@ -6,10 +6,11 @@ import { BeneficiaireService } from "../../services/beneficiaire.service";
 import { CategorieService } from "../../services/categorie.service";
 import { Categories } from "../../interfaces/categories";
 import { Beneficiaires } from "../../interfaces/beneficiaires";
-import { Depenses, DepensesDisplay } from "../../interfaces/depenses";
+import { Revenus, RevenusDisplay } from "../../interfaces/revenus";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
+import {CrediteurService} from "../../services/crediteur.service";
 
 @Component({
   selector: 'app-revenus',
@@ -18,27 +19,27 @@ import { MatSort } from "@angular/material/sort";
 })
 export class RevenusComponent implements AfterViewInit {
     isLoading = true;
-    depenses: Depenses[] = [];
-    depensesDisplay: Array<DepensesDisplay> = [];
+    depenses: Revenus[] = [];
+    revenusDisplay: Array<RevenusDisplay> = [];
     beneficiaires: Beneficiaires[] = [];
     categories: Categories[] = [];
 
-    displayedColumns: string[] = [ 'ID', 'Montant', 'Date', 'Créditeur', 'Categorie', 'Description' ];
-    dataSource: MatTableDataSource<DepensesDisplay>;
+    displayedColumns: string[] = [ 'ID', 'Montant', 'Date', 'Crediteur', 'Categorie', 'Description' ];
+    dataSource: MatTableDataSource<RevenusDisplay>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     refresh: boolean = false;
 
-    constructor(public revenusService: RevenusService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService) {
+    constructor(public revenusService: RevenusService, public beneficiareService: BeneficiaireService, public crediteurService: CrediteurService, public categorieService: CategorieService) {
         this.revenusService.getAll().subscribe({
             next: (res: any) => {
-                res.forEach((element: Depenses) => {
-                    this.depensesDisplay.push({
+                res.forEach((element: Revenus) => {
+                    this.revenusDisplay.push({
                         "ID": element.ID,
-                        "montant": element.montant,
+                        "montant": element.Montant,
                         "Date": DateUtilities.dateFormat(element.Date),
-                        "Beneficiaire": element.IDBeneficiaire.toString(),
+                        "Crediteur": element.IDCrediteur.toString(),
                         "Categorie": element.IDCategorie.toString(),
                         "Description": element.Description
                     })
@@ -50,7 +51,7 @@ export class RevenusComponent implements AfterViewInit {
                 console.log(err);
             },
             complete: () => {
-                this.dataSource = new MatTableDataSource<DepensesDisplay>(this.depensesDisplay);
+                this.dataSource = new MatTableDataSource<RevenusDisplay>(this.revenusDisplay);
                 this.ngAfterViewInit();
                 this.isLoading = false;
             }
@@ -59,8 +60,8 @@ export class RevenusComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         for (let i = 0; i < this.dataSource.data.length; i++) {
-            this.beneficiareService.getID(parseInt(this.dataSource.data[i].Beneficiaire)).subscribe({
-                next: (res: any) => { this.dataSource.data[i].Beneficiaire = res.nom; }
+            this.crediteurService.getID(parseInt(this.dataSource.data[i].Crediteur)).subscribe({
+                next: (res: any) => { this.dataSource.data[i].Crediteur = res.nom; }
             });
 
             this.categorieService.getID((parseInt(this.dataSource.data[i].Categorie))).subscribe({
