@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../environments/environment";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -20,6 +20,18 @@ export class BeneficiaireService {
 
     getAll(): Observable<object> {
         const apiGet = this.apiBaseUrl + '/beneficiaires';
+        console.log(this.http.get(apiGet, {responseType: 'json'}))
+        return this.http.get(apiGet, {responseType: 'json'});
+    }
+
+    newBeneficiaire(nomBeneficiaire: string): Observable<object> {
+        const apiPost = this.apiBaseUrl + '/beneficiaires';
+        const params = new HttpParams().set("nomBeneficiaire", nomBeneficiaire);
+        return this.http.post(apiPost, params );
+    }
+
+    getAllTotal(): Observable<object> {
+        const apiGet = this.apiBaseUrl + "/beneficiaires/getTotal";
         return this.http.get(apiGet, {responseType: 'json'});
     }
 }

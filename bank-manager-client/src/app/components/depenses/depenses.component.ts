@@ -18,7 +18,7 @@ import {FormControl} from "@angular/forms";
     styleUrls: ['./depenses.component.scss']
 })
 export class DepensesComponent implements AfterViewInit, OnInit {
-    isLoading = true;
+    isLoading: boolean = true;
     depenses: Depenses[] = [];
     depensesDisplay: Array<DepensesDisplay> = [];
     beneficiaires: Beneficiaires[] = [];
@@ -31,7 +31,6 @@ export class DepensesComponent implements AfterViewInit, OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    refresh: boolean = false;
     YearSelect = new FormControl();
 
     constructor(public depensesService: DepensesService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService) {}
@@ -84,6 +83,7 @@ export class DepensesComponent implements AfterViewInit, OnInit {
                 res.forEach((element: Depenses) => {
                     /* If the element year is equal to the date selected by the user : */
                     if (parseInt(element.Date.toString().split('-')[0]) === year) {
+                        element.Description = element.Description == null || element.Description == "null" ? "" : element.Description;
                         /* Make every format method for each fields in the array */
                         this.depensesDisplay.push({
                             "ID": element.ID,

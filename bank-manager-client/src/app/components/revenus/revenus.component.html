@@ -1,10 +1,22 @@
 <div class="container-fluid">
-    <div class="row">
+    <div class="row my-3">
         <div class="col-4">
-            <app-categories-donut-chart [input]="refresh"></app-categories-donut-chart>
+            <a href="../revenus/new"><button class="btn btn-outline-success w-100">Nouveau revenu</button></a>
         </div>
         <div class="col-8">
-            <app-depenses-bar-chart [input]="refresh"></app-depenses-bar-chart>
+            <mat-form-field appearance="outline" class="w-100 border-primary">
+                <mat-label>Select the year :</mat-label>
+                <mat-select class="text-primary" [formControl]="YearSelect" (selectionChange)="changeYear()">
+                    <mat-option [value]="2021">2021</mat-option>
+                    <mat-option [value]="2022">2022</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4"> </div>
+        <div class="col-8">
+            <app-revenus-bar-chart [year]="selectedYear"></app-revenus-bar-chart>
         </div>
     </div>
     <div class="row">
@@ -16,15 +28,15 @@
                 </ng-container>
                 <ng-container matColumnDef="Montant">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant </th>
-                    <td mat-cell *matCellDef="let row"> {{ row.montant }}€</td>
+                    <td mat-cell *matCellDef="let row"> {{ row.Montant }}€</td>
                 </ng-container>
                 <ng-container matColumnDef="Date">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
                     <td mat-cell *matCellDef="let row"> {{ row.Date }} </td>
                 </ng-container>
-                <ng-container matColumnDef="Beneficiaire">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Bénéficiaire </th>
-                    <td mat-cell *matCellDef="let row"> {{ row.Beneficiaire }} </td>
+                <ng-container matColumnDef="Crediteur">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Crediteur </th>
+                    <td mat-cell *matCellDef="let row"> {{ row.Crediteur }} </td>
                 </ng-container>
                 <ng-container matColumnDef="Categorie">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Catégorie </th>

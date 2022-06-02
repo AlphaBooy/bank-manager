@@ -17,6 +17,18 @@ module.exports = {
             });
     },
 
+    async findAllDepenses() {
+        return sequelize.query("SELECT * FROM categories WHERE Type = 'depense'")
+            .then(data => {
+                console.log(chalk.green("Les catégories ont toutes été retournées avec succès !"));
+                return data[0];
+            })
+            .catch(err => {
+                console.log(chalk.red(err.message ||
+                    "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
+            });
+    },
+
     async findByPk(IDCategorie) {
         return Categories.findByPk(IDCategorie)
             .then(data => {

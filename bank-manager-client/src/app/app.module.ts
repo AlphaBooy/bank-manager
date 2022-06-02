@@ -28,10 +28,17 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { NgApexchartsModule } from "ng-apexcharts";
 import { CategoriesDonutChartComponent } from './components/graphs/categories-donut-chart/categories-donut-chart.component';
 import { DepensesBarChartComponent } from './components/graphs/depenses-bar-chart/depenses-bar-chart.component';
-import { CategoriesComponent } from './components/depenses/categories/categories.component';
+import { CategoriesDetailsComponent } from './components/depenses/categoriesDetails/categoriesDetails.component';
 import { NouvelleDepenseComponent } from './components/depenses/nouvelle-depense/nouvelle-depense.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
+import { CrediteursComponent } from './components/depenses/crediteurs/crediteurs.component';
+import { BeneficiairesComponent } from './components/beneficiaires/beneficiaires.component';
+import { BeneficiairesDetailsComponent } from './components/depenses/beneficiairesDetails/beneficiairesDetails.component';
+import { BeneficiaireDonutChartComponent } from './components/graphs/beneficiaire-donut-chart/beneficiaire-donut-chart.component';
+import { CryptoComponent } from './components/crypto/crypto.component';
+import { EpargneComponent } from './components/epargne/epargne.component';
+import { RevenusBarChartComponent } from './components/graphs/revenus-bar-chart/revenus-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +49,15 @@ import {MatCardModule} from "@angular/material/card";
     DepensesComponent,
     CategoriesDonutChartComponent,
     DepensesBarChartComponent,
-    CategoriesComponent,
-    NouvelleDepenseComponent
+    CategoriesDetailsComponent,
+    NouvelleDepenseComponent,
+    CrediteursComponent,
+    BeneficiairesComponent,
+      BeneficiairesDetailsComponent,
+    BeneficiaireDonutChartComponent,
+    CryptoComponent,
+    EpargneComponent,
+    RevenusBarChartComponent
   ],
     imports: [
         BrowserModule,

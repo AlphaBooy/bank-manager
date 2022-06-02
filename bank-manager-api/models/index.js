@@ -24,5 +24,6 @@ db.revenus          = require("./revenus.model.js")(sequelize, Sequelize);
 db.beneficiaires    = require("./beneficiaires.model.js")(sequelize, Sequelize);
 db.crediteurs       = require("./crediteurs.model.js")(sequelize, Sequelize);
 db.categories       = require("./categories.model.js")(sequelize, Sequelize);
+db.crypto            = require("./cryptos.model.js")(sequelize, Sequelize);
 
 module.exports = db;

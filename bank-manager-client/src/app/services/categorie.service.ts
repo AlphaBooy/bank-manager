@@ -23,6 +23,11 @@ export class CategorieService {
         return this.http.get(apiGet, {responseType: 'json'});
     }
 
+    getAllDepenses(): Observable<object> {
+        const apiGet = this.apiBaseUrl + '/categories/depenses';
+        return this.http.get(apiGet, {responseType: 'json'});
+    }
+
     getAllNames(): Observable<object> {
         const apiGet = this.apiBaseUrl + '/categories/noms';
         return this.http.get(apiGet, {responseType: 'json'});
