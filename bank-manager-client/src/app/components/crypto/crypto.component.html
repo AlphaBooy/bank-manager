@@ -8,8 +8,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">CRONOS</h5>
-                                    <span class="h2 font-weight-bold mb-0">350,897</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ cryptoAccounts[0].name }}</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{ cryptoAccounts[0].value }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -29,8 +29,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ cryptoAccounts[1].name }}</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{ cryptoAccounts[1].value }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -50,8 +50,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                                    <span class="h2 font-weight-bold mb-0">924</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ cryptoAccounts[2].name }}</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{ cryptoAccounts[2].value }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -71,8 +71,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                                    <span class="h2 font-weight-bold mb-0">49,65%</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ cryptoAccounts[3].name }}</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{ cryptoAccounts[3].value }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -108,11 +108,11 @@
                 </ng-container>
                 <ng-container matColumnDef="Montant EURO">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant EURO </th>
-                    <td mat-cell *matCellDef="let row"> {{ row.montantEUR }} </td>
+                    <td mat-cell *matCellDef="let row"> {{ row.montantEUR }} €</td>
                 </ng-container>
                 <ng-container matColumnDef="Montant Crypto">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant Crypto </th>
-                    <td mat-cell *matCellDef="let row"> {{ row.montantCrypto }} </td>
+                    <td mat-cell *matCellDef="let row"> {{ row.montantCrypto }} {{ row.acronymeCrypto }}</td>
                 </ng-container>
                 <ng-container matColumnDef="Taux de conversion">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Taux de conversion </th>

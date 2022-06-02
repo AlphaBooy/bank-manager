@@ -16,4 +16,9 @@ export class CryptosService {
         const apiGet = this.apiBaseUrl + '/cryptos';
         return this.http.get(apiGet, { responseType: 'json' });
     }
+
+    getTotalCrypto(crypto: string): Observable<object> {
+        const apiGet = this.apiBaseUrl + '/cryptos/getTotalCrypto/' + crypto;
+        return this.http.get(apiGet, { responseType: 'json' });
+    }
 }
