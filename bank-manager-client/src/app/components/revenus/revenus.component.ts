@@ -70,7 +70,7 @@ export class RevenusComponent implements AfterViewInit {
                 res.forEach((element: Revenus) => {
                     this.revenusDisplay.push({
                         "ID": element.ID,
-                        "montant": element.Montant,
+                        "Montant": element.montant,
                         "Date": DateUtilities.dateFormat(element.Date),
                         "Crediteur": element.IDCrediteur.toString(),
                         "Categorie": element.IDCategorie.toString(),
