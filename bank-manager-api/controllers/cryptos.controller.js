@@ -17,7 +17,7 @@ module.exports = {
     },
 
     async getTotalEuro() {
-        return sequelize.query("SELECT SUM(montantEUR) AS TOTAL FROM cryptos")
+        return sequelize.query("SELECT(IFNULL((SELECT SUM(montantEUR)FROM cryptos WHERE type ='revenu'),0))-(IFNULL((SELECT SUM(montantEUR)FROM cryptos WHERE type ='depense'),0))AS TOTAL")
             .then(data => {
                 console.log(chalk.green("Le total investit en euro a été retourné avec succès !"));
                 return data[0];
@@ -68,6 +68,30 @@ module.exports = {
         return sequelize.query("SELECT IF(EXISTS(SELECT * FROM cryptos WHERE nomCrypto = '" + nomCrypto + "'),1,0) AS result")
             .then(data => {
                 console.log(chalk.green("Le total investit en " + nomCrypto + " a été retourné avec succès !"));
+                return data[0];
+            })
+            .catch(err => {
+                console.log(chalk.red(err.message ||
+                    "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
+            });
+    },
+
+    async getSpendings(acronyme) {
+        return sequelize.query("SELECT SUM(montantEUR) AS TOTAL FROM cryptos WHERE acronymeCrypto = '" + acronyme + "' AND type = 'revenu'")
+            .then(data => {
+                console.log(chalk.green("Le total investit en EURO pour " + acronyme + " a été retourné avec succès !"));
+                return data[0];
+            })
+            .catch(err => {
+                console.log(chalk.red(err.message ||
+                    "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
+            });
+    },
+
+    async getSpendingsNom(nomCrypto) {
+        return sequelize.query("SELECT SUM(montantEUR) AS TOTAL FROM cryptos WHERE nomCrypto = '" + nomCrypto + "' AND type = 'revenu'")
+            .then(data => {
+                console.log(chalk.green("Le total investit en EURO pour " + nomCrypto + " a été retourné avec succès !"));
                 return data[0];
             })
             .catch(err => {

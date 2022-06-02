@@ -19,10 +19,10 @@ export class CryptoComponent implements OnInit {
     cryptos: Cryptos[] = [];
 
     cryptoAccounts = [
-        {"name": "CRONOS", "value": 0},
-        {"name": "BITCOIN", "value": 0},
-        {"name": "APECOIN", "value": 0},
-        {"name": "USDCOIN", "value": 0}
+        {"name": "CRONOS", "value": 0, "spendings": 0, "valueEUR": 0},
+        {"name": "BITCOIN", "value": 0, "spendings": 0, "valueEUR": 0},
+        {"name": "APECOIN", "value": 0, "spendings": 0, "valueEUR": 0},
+        {"name": "USDCOIN", "value": 0, "spendings": 0, "valueEUR": 0}
     ]
 
     displayedColumns: string[] = [ 'ID', 'Crypto', 'ACRO','Montant EURO', 'Montant Crypto','Taux de conversion', 'Sous Type', 'Date' ];
@@ -60,6 +60,15 @@ export class CryptoComponent implements OnInit {
               next: (res: any) => {
                   console.log(res[0]["TOTAL"])
                   this.cryptoAccounts[i].value = res[0]["TOTAL"]
+              },
+              error: (err) => {
+                  console.log(err);
+              }
+          });
+          this.cryptosService.getDepensesCrypto(this.cryptoAccounts[i].name).subscribe({
+              next: (res: any) => {
+                  console.log(res[0]["TOTAL"])
+                  this.cryptoAccounts[i].spendings = res[0]["TOTAL"]
               },
               error: (err) => {
                   console.log(err);

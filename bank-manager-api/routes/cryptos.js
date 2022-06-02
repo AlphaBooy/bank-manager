@@ -30,6 +30,23 @@ router.get('/getTotalCrypto/:crypto', async function(req, res, next) {
     res.json(cryptoTotal);
 });
 
+router.get('/getDepensesCrypto/:crypto', async function(req, res, next) {
+    let crypto = req.params.crypto;
+    let cryptoTotalDepenses = 0;
+
+    /* On cherche la cryptomonnaie par son nom et par son acronyme pour éviter les erreurs de saisies */
+
+    let acroExists = await cryptos.doAcroCryptoExists(crypto);
+    let nomExists = await cryptos.doNomCryptoExists(crypto);
+
+    if (acroExists[0]["result"] === 1) {
+        cryptoTotalDepenses = await cryptos.getSpendings(crypto);
+    } else if (nomExists[0]["result"] === 1) {
+        cryptoTotalDepenses = await cryptos.getSpendingsNom(crypto);
+    }
+    res.json(cryptoTotalDepenses);
+});
+
 /* POST crypto. */
 router.post('/', function(req, res, next) {
     res.send("nothing yet");
