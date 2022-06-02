@@ -29,7 +29,7 @@ module.exports = {
     },
 
     async getTotalCrypto(acronyme) {
-        return sequelize.query("SELECT(SELECT SUM(montantCrypto)FROM cryptos WHERE nomCrypto = '" + acronyme + "' AND type ='revenu')-(SELECT SUM(montantCrypto)FROM cryptos WHERE nomCrypto = '" + acronyme + "' AND type ='depense')AS TOTAL")
+        return sequelize.query("SELECT(IFNULL((SELECT SUM(montantCrypto)FROM cryptos WHERE acronymeCrypto = '" + acronyme + "' AND type ='revenu'),0))-(IFNULL((SELECT SUM(montantCrypto)FROM cryptos WHERE acronymeCrypto = '" + acronyme + "' AND type ='depense'),0))AS TOTAL")
             .then(data => {
                 console.log(chalk.green("Le total investit en " + acronyme + " a été retourné avec succès !"));
                 return data[0];
@@ -41,7 +41,7 @@ module.exports = {
     },
 
     async getTotalCryptoNom(nomCrypto) {
-        return sequelize.query("SELECT(SELECT SUM(montantCrypto)FROM cryptos WHERE nomCrypto = '" + nomCrypto + "' AND type ='revenu')-(SELECT SUM(montantCrypto)FROM cryptos WHERE nomCrypto = '" + nomCrypto + "' AND type ='depense')AS TOTAL")
+        return sequelize.query("SELECT(IFNULL((SELECT SUM(montantCrypto)FROM cryptos WHERE nomCrypto = '" + nomCrypto + "' AND type ='revenu'),0))-(IFNULL((SELECT SUM(montantCrypto)FROM cryptos WHERE nomCrypto = '" + nomCrypto + "' AND type ='depense'),0))AS TOTAL")
             .then(data => {
                 console.log(chalk.green("Le total investit en " + nomCrypto + " a été retourné avec succès !"));
                 return data[0];
