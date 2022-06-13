@@ -1,11 +1,23 @@
 export interface Cryptos {
     ID: string,
-    Nom: string,
-    Acronyme: string,
-    MontantEUR: number,
-    MontantCrypto: number,
-    Taux: number,
-    Type: string,
-    SousType: string,
-    Date: Date
+    nomCrypto: string,
+    acronymeCrypto: string,
+    montantEUR: number,
+    montantCrypto: number,
+    tauxEUR: number,
+    type: string,
+    sousType: string,
+    date: Date
+}
+
+export interface CryptosDisplay {
+    ID: string,
+    nomCrypto: string,
+    acronymeCrypto: string,
+    montantEUR: number,
+    montantCrypto: number,
+    tauxEUR: number,
+    type: string,
+    sousType: string,
+    date: string
 }

@@ -77,7 +77,7 @@ module.exports = {
     },
 
     async getSpendings(acronyme) {
-        return sequelize.query("SELECT SUM(montantEUR) AS TOTAL FROM cryptos WHERE acronymeCrypto = '" + acronyme + "' AND type = 'revenu'")
+        return sequelize.query("SELECT SUM(montantEUR) AS TOTAL FROM cryptos WHERE acronymeCrypto = '" + acronyme + "' AND type = 'revenu' AND sousType='Achat'")
             .then(data => {
                 console.log(chalk.green("Le total investit en EURO pour " + acronyme + " a été retourné avec succès !"));
                 return data[0];
@@ -89,7 +89,7 @@ module.exports = {
     },
 
     async getSpendingsNom(nomCrypto) {
-        return sequelize.query("SELECT SUM(montantEUR) AS TOTAL FROM cryptos WHERE nomCrypto = '" + nomCrypto + "' AND type = 'revenu'")
+        return sequelize.query("SELECT SUM(montantEUR) AS TOTAL FROM cryptos WHERE nomCrypto = '" + nomCrypto + "' AND type = 'revenu' AND sousType='Achat'")
             .then(data => {
                 console.log(chalk.green("Le total investit en EURO pour " + nomCrypto + " a été retourné avec succès !"));
                 return data[0];
