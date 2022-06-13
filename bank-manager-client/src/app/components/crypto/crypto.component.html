@@ -21,7 +21,7 @@
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
                                 <span class="text-nowrap">Valeur réelle :</span>
-                                <span [ngClass]="{'text-success': compte.valueEUR - compte.spendings >= 0, 'text-danger': compte.valueEUR - compte.spendings < 0}" class="mr-2"><i class="fas fa-arrow-up"></i> {{ (compte.valueEUR).toFixed(2) }} </span>
+                                <span [ngClass]="{'text-success': compte.valueEUR - compte.spendings >= 0, 'text-danger': compte.valueEUR - compte.spendings < 0}" class="mr-2"><i class="fas fa-arrow-up"></i> {{ (compte.valueEUR).toFixed(2) }}€ </span>
                                 <span [ngClass]="{'text-success': compte.valueEUR - compte.spendings >= 0, 'text-danger': compte.valueEUR - compte.spendings < 0}" class="mr-2">
                                     <i class="fas fa-arrow-up"></i>
                                     ( {{ (((compte.valueEUR - compte.spendings) / compte.spendings) * 100).toFixed(2) }} % )

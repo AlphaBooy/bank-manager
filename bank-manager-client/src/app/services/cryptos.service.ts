@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {secrets} from "../../environments/secrets";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -34,7 +35,7 @@ export class CryptosService {
             headers:
                 {
                     'responseType': 'json',
-                    'X-RapidAPI-Key': '5f08ed2f58msh920e89f15d7af3dp10dfe6jsn31d4389e45af'
+                    'X-RapidAPI-Key': secrets.rapidAPIkey
                 }
         });
     }
