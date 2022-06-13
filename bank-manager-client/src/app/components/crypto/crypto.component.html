@@ -3,15 +3,15 @@
         <h1>Comptes</h1>
         <div class="header-body">
             <div class="row">
-                <div class="col-xl-3 col-lg-6">
+                <div class="col-xl-3 col-lg-6" *ngFor="let compte of cryptoAccounts">
                     <div class="card card-stats mb-4 mb-xl-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ cryptoAccounts[0].name }}</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{ cryptoAccounts[0].value }}</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ compte.name }}</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{ compte.value }} {{ compte.acro }}</span>
                                     <br/>
-                                    <span class="h4 mb-0">Somme investie : {{ cryptoAccounts[0].spendings }}</span>
+                                    <span class="h4 mb-0 text-info">Somme investie : {{ compte.spendings }} €</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -20,77 +20,12 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span class="text-nowrap">Since last month</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6">
-                    <div class="card card-stats mb-4 mb-xl-0">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ cryptoAccounts[1].name }}</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{ cryptoAccounts[1].value }}</span>
-                                    <br/>
-                                    <span class="h4 mb-0">Somme investie : {{ cryptoAccounts[1].spendings }}</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                        <i class="fas fa-chart-pie"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                                <span class="text-nowrap">Since last week</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6">
-                    <div class="card card-stats mb-4 mb-xl-0">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ cryptoAccounts[2].name }}</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{ cryptoAccounts[2].value }}</span>
-                                    <br/>
-                                    <span class="h4 mb-0">Somme investie : {{ cryptoAccounts[2].spendings }}</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                <span class="text-nowrap">Since yesterday</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6">
-                    <div class="card card-stats mb-4 mb-xl-0">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">{{ cryptoAccounts[3].name }}</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{ cryptoAccounts[3].value }}</span>
-                                    <br/>
-                                    <span class="h4 mb-0">Somme investie : {{ cryptoAccounts[3].spendings }}</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                        <i class="fas fa-percent"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                <span class="text-nowrap">Since last month</span>
+                                <span class="text-nowrap">Valeur réelle :</span>
+                                <span [ngClass]="{'text-success': compte.valueEUR - compte.spendings >= 0, 'text-danger': compte.valueEUR - compte.spendings < 0}" class="mr-2"><i class="fas fa-arrow-up"></i> {{ (compte.valueEUR).toFixed(2) }} </span>
+                                <span [ngClass]="{'text-success': compte.valueEUR - compte.spendings >= 0, 'text-danger': compte.valueEUR - compte.spendings < 0}" class="mr-2">
+                                    <i class="fas fa-arrow-up"></i>
+                                    ( {{ (((compte.valueEUR - compte.spendings) / compte.spendings) * 100).toFixed(2) }} % )
+                                </span>
                             </p>
                         </div>
                     </div>

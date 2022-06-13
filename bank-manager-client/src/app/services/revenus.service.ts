@@ -17,7 +17,6 @@ export class RevenusService {
         return this.http.get(apiGet, { responseType: 'json' });
     }
 
-
     getRevenusByMois(year: any): Observable<object> {
         const apiGet = this.apiBaseUrl + '/revenus/mois/' + year;
         return this.http.get(apiGet, { responseType: 'json' });

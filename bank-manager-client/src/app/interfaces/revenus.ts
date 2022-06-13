@@ -1,6 +1,6 @@
 export interface Revenus {
     ID: string,
-    Montant: number,
+    montant: number,
     Date: Date,
     IDCrediteur: number,
     IDCategorie: number,
@@ -9,7 +9,7 @@ export interface Revenus {
 
 export interface RevenusDisplay {
     ID: string,
-    montant: number,
+    Montant: number,
     Date: string,
     Crediteur: string,
     Categorie: string,
