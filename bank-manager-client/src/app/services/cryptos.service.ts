@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {secrets} from "../../environments/secrets";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -25,5 +26,17 @@ export class CryptosService {
     getDepensesCrypto(crypto: string): Observable<object> {
         const apiGet = this.apiBaseUrl + '/cryptos/getDepensesCrypto/' + crypto;
         return this.http.get(apiGet, { responseType: 'json' });
+    }
+
+    getCurrentCryptoValue(crypto: string): Observable<object> {
+        //crypto = "crypto-com-chain"
+        const apiGet = 'https://api.coingecko.com/api/v3/simple/price?ids=' + crypto + '&vs_currencies=EUR';
+        return this.http.get(apiGet, {
+            headers:
+                {
+                    'responseType': 'json',
+                    'X-RapidAPI-Key': secrets.rapidAPIkey
+                }
+        });
     }
 }
