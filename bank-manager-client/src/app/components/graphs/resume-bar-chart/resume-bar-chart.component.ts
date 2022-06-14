@@ -55,11 +55,17 @@ export class ResumeBarChartComponent implements OnInit {
                 },
                 tooltip: { enabled: true, offsetY: -35 }
             },
-            colors: ["#FFC107"],
+            colors: ["#FF0000","#00FF00","#FFC107"],
+            legend: {
+                labels: {
+                    colors: ["#FF0000","#00FF00","#FFC107"],
+                    useSeriesColors: true
+                }
+            },
             yaxis: {
                 axisBorder: { show: false },
                 axisTicks: { show: false },
-                labels: { show: false, }
+                labels: { show: false }
             }
         };
     }
@@ -123,10 +129,14 @@ export class ResumeBarChartComponent implements OnInit {
         for (let i = 0; i < this.depensesMois.length && i < this.revenusMois.length
                        && this.depensesMois[i] != undefined && this.revenusMois[i] != undefined; i++) {
             this.data[i] = this.revenusMois[i] - this.depensesMois[i];
+            this.data[i] = Number(this.data[i].toFixed(2))
         }
 
-        this.chartOptions.series.push({ name: "Depenses / Mois", data: this.data });
-        this.chartOptions.series.pop();
+        this.chartOptions.series.push({ name: "Dépenses", data: this.depensesMois });
+        this.chartOptions.series.push({ name: "Revenus", data: this.revenusMois });
+        this.chartOptions.series.push({ name: "Résumé", data: this.data });
+        //this.chartOptions.series.pop();
+        this.chartOptions.series.shift();
 
         // We wait another delay time, so we can refresh the page and display our array
         await this.sleep(500);

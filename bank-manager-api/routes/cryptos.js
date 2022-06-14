@@ -47,6 +47,17 @@ router.get('/getDepensesCrypto/:crypto', async function(req, res, next) {
     res.json(cryptoTotalDepenses);
 });
 
+async function sleep(number) {
+    return new Promise(resolve => {
+        setTimeout(resolve, number);
+    });
+}
+
+router.get('/getAllByCrypto', async function(req, res, next) {
+    let cryptoArray = await cryptos.getTotalByCrypto();
+    res.json(cryptoArray[0]);
+});
+
 /* POST crypto. */
 router.post('/', function(req, res, next) {
     res.send("nothing yet");

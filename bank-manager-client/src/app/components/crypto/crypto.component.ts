@@ -97,7 +97,6 @@ export class CryptoComponent implements OnInit {
   }
 
     ngAfterViewInit() {
-      console.log(this.dataSource)
         if (this.dataSource === undefined) {
             this.isLoading = true;
         } else {

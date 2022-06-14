@@ -21,3 +21,10 @@ export interface CryptosDisplay {
     sousType: string,
     date: string
 }
+
+export interface cryptoByType {
+    nomCrypto: string,
+    acronymeCrypto: string,
+    TOTALCRYPTO: number,
+    TOTALEUR: number,
+}

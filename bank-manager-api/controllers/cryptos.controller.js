@@ -98,5 +98,17 @@ module.exports = {
                 console.log(chalk.red(err.message ||
                     "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
             });
+    },
+
+    async getTotalByCrypto() {
+        return sequelize.query("SELECT nomCrypto, acronymeCrypto, (IFNULL((SELECT SUM(montantCrypto) FROM cryptos WHERE type ='revenu' AND nomCrypto = c.nomCrypto),0) ) - (IFNULL((SELECT SUM(montantCrypto) FROM cryptos WHERE type ='depense' AND nomCrypto = c.nomCrypto),0) ) AS TOTALCRYPTO, (IFNULL((SELECT SUM(montantEUR) FROM cryptos WHERE type ='revenu' AND nomCrypto = c.nomCrypto),0) ) - (IFNULL((SELECT SUM(montantEUR) FROM cryptos WHERE type ='depense' AND nomCrypto = c.nomCrypto),0) ) AS TOTALEUR from cryptos c GROUP BY nomCrypto, acronymeCrypto; ")
+            .then(data => {
+                console.log(chalk.green("Les cryptos ont été retournées avec succès !"));
+                return data;
+            })
+            .catch(err => {
+                console.log(chalk.red(err.message ||
+                    "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
+            });
     }
 }

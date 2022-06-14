@@ -1,1 +1,25 @@
-<app-resume-bar-chart [year]="selectedYear"></app-resume-bar-chart>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <div class="card" style="background-color: inherit">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <mat-icon>polymer</mat-icon>
+                        Cryptomonnaies
+                    </h2>
+                    <mat-divider class="bg-primary w-50"></mat-divider>
+                </div>
+                <div class="card-body">
+                    <p class="text-sm">Somme totale investie : </p>
+                    <p class="text-sm">Valeur totale : </p>
+                    <div class="chart">
+                        <app-cryptos-donut-chart></app-cryptos-donut-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <app-resume-bar-chart [year]="selectedYear"></app-resume-bar-chart>
+        </div>
+    </div>
+</div>
