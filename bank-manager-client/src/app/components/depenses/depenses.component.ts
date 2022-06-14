@@ -58,6 +58,7 @@ export class DepensesComponent implements AfterViewInit, OnInit {
                 this.categorieService.getID((parseInt(this.dataSource.data[i].Categorie))).subscribe({
                     next: (res: any) => {
                         this.dataSource.data[i].Categorie = res.nom;
+                        this.dataSource.data[i].CategorieIcon = res.Icon;
                     }
                 });
             }
@@ -91,6 +92,7 @@ export class DepensesComponent implements AfterViewInit, OnInit {
                             "Date": DateUtilities.dateFormat(element.Date),
                             "Beneficiaire": element.IDBeneficiaire.toString(),
                             "Categorie": element.IDCategorie.toString(),
+                            "CategorieIcon": "",
                             "Description": element.Description
                         })
                         /* Push the depenses object (non formatted) in the dedicated array */

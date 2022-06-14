@@ -14,13 +14,15 @@ export interface DepensesDisplay {
     Date: string,
     Beneficiaire: string,
     Categorie: string,
+    CategorieIcon: string,
     Description: string
 }
 
 export interface DepensesCategorie {
     TOTAL: number,
     nom: string,
-    ID: number
+    ID: number,
+    icon: string
 }
 
 export interface DepensesMois {

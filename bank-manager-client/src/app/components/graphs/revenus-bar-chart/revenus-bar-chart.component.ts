@@ -73,6 +73,9 @@ export class RevenusBarChartComponent implements OnInit {
                 this.data[element.MOIS - 1] = element.TOTAL;
             });
             this.chartOptions.series.push({ name: "Revenus / Mois", data: this.data });
+            if (this.chartOptions.series.length > 1) {
+                this.chartOptions.series.pop();
+            }
         });
     }
 }

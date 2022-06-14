@@ -88,7 +88,6 @@ export class CryptoComponent implements OnInit {
               next: (res: any) => {
                   let taux = parseFloat(res[this.cryptoAccounts[i].idGecko]["eur"])
                   this.cryptoAccounts[i].valueEUR = this.cryptoAccounts[i].value * taux;
-                  console.log(this.cryptoAccounts[i].valueEUR);
               },
               error: (err) => {
                   console.log(err);

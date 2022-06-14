@@ -10,6 +10,9 @@ module.exports = (sequelize, Sequelize) => {
             },
             Type: {
                 type: Sequelize.ENUM('depense','revenu')
+            },
+            Icon: {
+                type: Sequelize.STRING(25)
             }
         },
         {
