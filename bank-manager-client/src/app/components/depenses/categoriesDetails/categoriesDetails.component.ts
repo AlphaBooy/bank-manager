@@ -44,6 +44,7 @@ export class CategoriesDetailsComponent implements AfterViewInit {
                         "Date": DateUtilities.dateFormat(element.Date),
                         "Beneficiaire": element.IDBeneficiaire.toString(),
                         "Categorie": "",
+                        "CategorieIcon": "",
                         "Description": element.Description
                     })
                     this.depenses.push(element);

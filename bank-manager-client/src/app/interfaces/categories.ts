@@ -1,5 +1,6 @@
 export interface Categories {
     ID: number,
     nom: string,
-    type: string
+    type: string,
+    icon: string
 }

@@ -15,3 +15,8 @@ export interface RevenusDisplay {
     Categorie: string,
     Description: string
 }
+
+export interface RevenusMois {
+    TOTAL: number,
+    MOIS: number
+}
