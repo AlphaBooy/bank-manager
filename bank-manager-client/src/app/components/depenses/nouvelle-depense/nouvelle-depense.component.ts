@@ -27,6 +27,8 @@ export class NouvelleDepenseComponent implements OnInit {
     beneficiaires: Beneficiaires[];
     categories: Categories[];
 
+    oblisel = "Obligatoire";
+
     constructor(public beneficiaireService: BeneficiaireService, public categorieService: CategorieService, public depenseService: DepensesService, public router: Router) { }
 
     ngOnInit() {

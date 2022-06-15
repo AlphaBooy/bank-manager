@@ -29,8 +29,8 @@
                     <!-- CHAMP DE SELECTION OBLIGATOIRE OU NON DE LA DEPENSE -->
                     <mat-form-field class="w-100 my-3">
                         <mat-label class="text-white">Obligatoire :</mat-label>
-                        <mat-select class="text-primary" [formControl]="obligatoireList">
-                            <mat-option *ngFor="let obli of ['Obligatoire', 'Facultative']" [value]="obli">{{obli}}</mat-option>
+                        <mat-select class="text-primary" [formControl]="obligatoireList" [(ngModel)]="oblisel">
+                            <mat-option *ngFor="let obli of ['Obligatoire', 'Facultative']" [value]="obli">{{ obli }}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
