@@ -40,7 +40,7 @@
                 </ng-container>
                 <ng-container matColumnDef="Categorie">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Catégorie </th>
-                    <td mat-cell *matCellDef="let row"> {{ row.Categorie }} </td>
+                    <td mat-cell *matCellDef="let row"><mat-icon>{{row.CategorieIcon}}</mat-icon> {{ row.Categorie }} </td>
                 </ng-container>
                 <ng-container matColumnDef="Description">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>

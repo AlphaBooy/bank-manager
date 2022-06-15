@@ -50,7 +50,10 @@ export class RevenusComponent implements AfterViewInit {
             });
 
             this.categorieService.getID((parseInt(this.dataSource.data[i].Categorie))).subscribe({
-                next: (res: any) => { this.dataSource.data[i].Categorie = res.nom; }
+                next: (res: any) => {
+                    this.dataSource.data[i].Categorie = res.nom;
+                    this.dataSource.data[i].CategorieIcon = res.Icon;
+                }
             });
         }
         this.dataSource.paginator = this.paginator;
@@ -74,6 +77,7 @@ export class RevenusComponent implements AfterViewInit {
                         "Date": DateUtilities.dateFormat(element.Date),
                         "Crediteur": element.IDCrediteur.toString(),
                         "Categorie": element.IDCategorie.toString(),
+                        "CategorieIcon": "",
                         "Description": element.Description
                     })
                     this.depenses.push(element);

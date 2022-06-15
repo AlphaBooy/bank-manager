@@ -4,6 +4,7 @@ export interface Revenus {
     Date: Date,
     IDCrediteur: number,
     IDCategorie: number,
+    CategorieIcon: string,
     Description: string
 }
 
@@ -13,6 +14,7 @@ export interface RevenusDisplay {
     Date: string,
     Crediteur: string,
     Categorie: string,
+    CategorieIcon: string,
     Description: string
 }
 
