@@ -41,6 +41,7 @@ import { EpargneComponent } from './components/epargne/epargne.component';
 import { RevenusBarChartComponent } from './components/graphs/revenus-bar-chart/revenus-bar-chart.component';
 import { ResumeBarChartComponent } from './components/graphs/resume-bar-chart/resume-bar-chart.component';
 import { CryptosDonutChartComponent } from './components/graphs/cryptos-donut-chart/cryptos-donut-chart.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { CryptosDonutChartComponent } from './components/graphs/cryptos-donut-ch
         MatProgressSpinnerModule,
         NgApexchartsModule,
         ReactiveFormsModule,
-        MatCardModule
+        MatCardModule,
+        MatCheckboxModule
     ],
   providers: [],
   bootstrap: [AppComponent]

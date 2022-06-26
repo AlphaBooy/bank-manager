@@ -70,5 +70,19 @@ module.exports = {
                 console.log(chalk.red(err.message ||
                     "Une erreur inconnue est survenue. Veuillez réessayer ou contacter un administrateur si le problème persiste."));
             });
+    },
+
+    async getAverages(IdCategorie) {
+        let array = []
+        let years = ["2021", "2022"];
+        let mounths = ["01","02","03","04","05","06","07","08","09","10","11","12"]
+        for (let i = 0; i < years.length; i++) {
+            for (let j = 0; j < mounths.length; j++) {
+                console.log("SELECT SUM(montant) AS MOYENNE FROM depenses WHERE IDCategorie = " + IdCategorie + " AND Date LIKE '" + years[i] + "-" + mounths[j] + "%'");
+                let result = sequelize.query("SELECT SUM(montant) AS MOYENNE FROM depenses WHERE IDCategorie = " + IdCategorie + " AND Date LIKE '" + years[i] + "-" + mounths[j] + "%'")
+                    .then(array.push(result));
+            }
+        }
+        return array;
     }
 }

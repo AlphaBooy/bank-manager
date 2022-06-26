@@ -26,6 +26,12 @@ router.get('/mois/:year', async function(req, res, next) {
     res.json(depensesMoisArray[0]);
 });
 
+router.get('/mois/getAverage/:categorie', async function(req, res, next) {
+    let categorie = req.params.categorie
+    let averageSpendings  = await depenses.getAverages(categorie);
+    res.json(averageSpendings);
+});
+
 router.post('/',async function (req, res, next) {
     let montant = req.body.montant
     let date = req.body.date

@@ -26,7 +26,7 @@ export class DepensesComponent implements AfterViewInit, OnInit {
     todaysDate = new Date()
     selectedYear: number
 
-    displayedColumns: string[] = [ 'ID', 'Montant', 'Date', 'Beneficiaire', 'Categorie', 'Description' ];
+    displayedColumns: string[] = [ 'ID', 'Montant', 'Date', 'Beneficiaire', 'Categorie', 'Description', 'Obligatoire' ];
     dataSource: MatTableDataSource<DepensesDisplay>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
