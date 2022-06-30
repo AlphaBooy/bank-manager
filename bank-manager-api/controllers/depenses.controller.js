@@ -73,16 +73,11 @@ module.exports = {
     },
 
     async getAverages(IdCategorie) {
-        let array = []
-        let years = ["2021", "2022"];
-        let mounths = ["01","02","03","04","05","06","07","08","09","10","11","12"]
-        for (let i = 0; i < years.length; i++) {
-            for (let j = 0; j < mounths.length; j++) {
-                console.log("SELECT SUM(montant) AS MOYENNE FROM depenses WHERE IDCategorie = " + IdCategorie + " AND Date LIKE '" + years[i] + "-" + mounths[j] + "%'");
-                let result = sequelize.query("SELECT SUM(montant) AS MOYENNE FROM depenses WHERE IDCategorie = " + IdCategorie + " AND Date LIKE '" + years[i] + "-" + mounths[j] + "%'")
-                    .then(array.push(result));
-            }
+        let AVGRESULT = 0;
+        let sumsByMonth = await sequelize.query("SELECT date_format(Date, '%M %Y') AS mois, SUM(montant) AS SOMMEDEPENSES FROM depenses WHERE IDCategorie = " + IdCategorie + " GROUP BY date_format(Date, '%M %Y')");
+        for (let i = 0; i < sumsByMonth[0].length; i++) {
+            AVGRESULT += sumsByMonth[0][i]["SOMMEDEPENSES"]
         }
-        return array;
+        return AVGRESULT / sumsByMonth[0].length;
     }
 }

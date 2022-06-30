@@ -22,6 +22,7 @@ export class CategoriesDetailsComponent implements AfterViewInit {
     depensesDisplay: Array<DepensesDisplay> = [];
     beneficiaires: Beneficiaires[] = [];
     categories: Categories[] = [];
+    avgByMonth: number = 0;
 
     displayedColumns: string[] = [ 'ID', 'Montant', 'Date', 'Beneficiaire', 'Description' ];
     dataSource: MatTableDataSource<DepensesDisplay>;
@@ -34,6 +35,14 @@ export class CategoriesDetailsComponent implements AfterViewInit {
     constructor(public depensesService: DepensesService, public beneficiareService: BeneficiaireService, public categorieService: CategorieService, private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => {
             this.categorieRequested = params['id'];
+        });
+        this.depensesService.getAVGDepenseByMois(this.categorieRequested).subscribe({
+            next: (res: any) => {
+                this.avgByMonth = res.toFixed(2);
+            },
+            error: (err) => {
+                console.log(err);
+            },
         });
         this.depensesService.getDepenseCategorie(this.categorieRequested).subscribe({
             next: (res: any) => {

@@ -32,6 +32,11 @@ export class DepensesService {
         return this.http.get(apiGet, { responseType: 'json' });
     }
 
+    getAVGDepenseByMois(categorie: number): Observable<object> {
+        const apiGet = this.apiBaseUrl + '/depenses/mois/getAverage/' + categorie;
+        return this.http.get(apiGet, { responseType: 'json' });
+    }
+
     newDepense(date: string, montant: number, IDBeneficiaire: number, IDCategorie: number, Obligatoire: number, Description: string): Observable<object> {
         const apiPost = this.apiBaseUrl + '/depenses';
         const params = new HttpParams()
