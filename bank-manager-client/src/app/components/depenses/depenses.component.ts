@@ -93,7 +93,8 @@ export class DepensesComponent implements AfterViewInit, OnInit {
                             "Beneficiaire": element.IDBeneficiaire.toString(),
                             "Categorie": element.IDCategorie.toString(),
                             "CategorieIcon": "",
-                            "Description": element.Description
+                            "Description": element.Description,
+                            "Obligatoire": element.Obligatoire
                         })
                         /* Push the depenses object (non formatted) in the dedicated array */
                         this.depenses.push(element);

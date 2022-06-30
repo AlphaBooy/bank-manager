@@ -1,11 +1,11 @@
 export interface Depenses {
-  ID: string,
-  montant: number,
-  Date: Date,
-  IDBeneficiaire: number,
-  IDCategorie: number,
-  Description: string,
-  Obligatoire: number
+    ID: string,
+    montant: number,
+    Date: Date,
+    IDBeneficiaire: number,
+    IDCategorie: number,
+    Description: string,
+    Obligatoire: boolean
 }
 
 export interface DepensesDisplay {
@@ -15,7 +15,8 @@ export interface DepensesDisplay {
     Beneficiaire: string,
     Categorie: string,
     CategorieIcon: string,
-    Description: string
+    Description: string,
+    Obligatoire: boolean
 }
 
 export interface DepensesCategorie {

@@ -54,7 +54,8 @@ export class CategoriesDetailsComponent implements AfterViewInit {
                         "Beneficiaire": element.IDBeneficiaire.toString(),
                         "Categorie": "",
                         "CategorieIcon": "",
-                        "Description": element.Description
+                        "Description": element.Description,
+                        "Obligatoire": element.Obligatoire
                     })
                     this.depenses.push(element);
                 });
